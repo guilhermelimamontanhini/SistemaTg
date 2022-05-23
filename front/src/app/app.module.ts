@@ -12,12 +12,17 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { AlistadosModule } from './alistados/alistados.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { MenuModule } from './menu/menu.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    MenuModule,
     AlistadosModule,
     ProgressSpinnerModule,
     BrowserModule,
@@ -28,7 +33,13 @@ import { AlistadosModule } from './alistados/alistados.module';
     DialogModule,
     FormsModule,
     CheckboxModule,
-    InputTextModule
+    InputTextModule,
+    BrowserAnimationsModule, 
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
