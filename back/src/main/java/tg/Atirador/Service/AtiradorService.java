@@ -96,7 +96,7 @@ public class AtiradorService {
 	 * */
 	public ResponseEntity<List<AtiradorDTO>> listarTodosOsAtiradores() {
 		
-		List<Atirador> listaAtiradores = this.atiradorRepository.findAll();
+		List<Atirador> listaAtiradores = this.atiradorRepository.findAllByOrderByNomeAsc();
 		
 		if(listaAtiradores.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Não existem atiradores cadastrados!");

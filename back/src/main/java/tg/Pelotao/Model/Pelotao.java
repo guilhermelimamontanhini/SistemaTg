@@ -5,13 +5,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import tg.Pelotao.FORM.NovoPelotao;
+
 @Entity
 @Table(name = "pelotao")
 public class Pelotao {
 	
 	@Id
-	@Size(max = 1)
-	private Long numero;
+	private Integer numero;
 	
 	@Size(max = 50)
 	private String nome;
@@ -19,17 +20,22 @@ public class Pelotao {
 	public Pelotao() {
 		
 	}
+	
+	public Pelotao(NovoPelotao novoPelotao) {
+		this.numero = novoPelotao.getNumero();
+		this.nome = novoPelotao.getNome();
+	}
 
-	public Pelotao(@Size(max = 1) Long numero, @Size(max = 50) String nome) {
+	public Pelotao(Integer numero, @Size(max = 50) String nome) {
 		this.numero = numero;
 		this.nome = nome;
 	}
 
-	public Long getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 
-	public void setNumero(Long numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 

@@ -11,5 +11,6 @@ public interface AtiradorRepository extends JpaRepository<Atirador, Long> {
 	
 	Optional<Atirador> findByRa(Long ra);
 	List<Atirador> findAllByOrderByNomeAsc();
-
+	List<Atirador> findAllByNumeroPelotaoOrderByNomeAsc(Integer numeroPelotao);
+	               
 }
