@@ -28,3 +28,24 @@
     }
     
 }
+
+.tituloPagina {
+    text-align: center;
+    font-size: 30px;
+}
+
+.coluna-cpf {
+    width: 13%;
+}
+
+.coluna-nome {
+    width: auto;
+}
+
+.coluna-refratario {
+    width: 13%;
+}
+
+.coluna-acao {
+    width: 13%;
+}

@@ -9,7 +9,7 @@ import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
-
+import {RadioButtonModule} from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { InputTextModule } from 'primeng/inputtext';
     DialogModule,
     FormsModule,
     CheckboxModule,
-    InputTextModule
+    InputTextModule,
+    RadioButtonModule
   ], exports: [
     AlistadosComponente
   ]

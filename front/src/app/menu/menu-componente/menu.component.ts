@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-menu',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
   })
 export class MenuComponente implements OnInit {
 
-    ngOnInit(): void {
+  constructor(private rotas: Router) { }
 
-      }
+  ngOnInit(): void {
+
+  }
+
+  public redirecionar(url: String): void {
+    this.rotas.navigate([url]);
+    // setTimeout(() => {
+    //   this.fecharMenu();
+    // } , 300);
+  }
+      
 }

@@ -1,47 +1,44 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import { CommonModule } from '@angular/common';
-import { TableModule } from 'primeng/table';
-import { TooltipModule } from 'primeng/tooltip';
-import { DialogModule } from 'primeng/dialog';
-import { CheckboxModule } from 'primeng/checkbox';
-import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
-import { AlistadosModule } from './alistados/alistados.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
+import { RouterModule } from '@angular/router';
+import { JwtModule } from '@auth0/angular-jwt';
+import { ToastyModule } from 'ng2-toasty';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+import { AppComponent } from './app.component';
+import { AppRoutingModule, routing } from './app.routing.module';
+import { HttpModule } from '@angular/http';
+import { AlistadosModule } from './alistados/alistados.module';
+import { DispensadosModule } from './dispensados/dispensados.module';
 import { MenuModule } from './menu/menu.module';
-import { HttpClientModule } from '@angular/common/http';
+import { AtiradorModule } from './atirador/atirador.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    MenuModule,
-    AlistadosModule,
-    ProgressSpinnerModule,
-    BrowserModule,
-    AppRoutingModule,
-    CommonModule,
-    TableModule,
-    TooltipModule,
-    DialogModule,
-    FormsModule,
-    CheckboxModule,
-    InputTextModule,
-    BrowserAnimationsModule, 
-    HttpClientModule,
-    ToastrModule.forRoot({
-      timeOut: 10000,
-      positionClass: 'toast-bottom-right',
-    })
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        MenuModule,
+        AtiradorModule,
+        AlistadosModule,
+        DispensadosModule,
+        BrowserModule,
+        HttpModule,
+        ToastyModule.forRoot(),
+        AppRoutingModule,
+        RouterModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        routing,
+        JwtModule.forRoot({
+            config: {
+            }
+        })
+    ],
+    providers: [
+        ConfirmationService,
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

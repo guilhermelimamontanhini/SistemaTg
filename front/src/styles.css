@@ -17,13 +17,8 @@
     background: #1a3560;
 }
 
-.ui-dropdown-label-container {
-    width: 100% !important;
-    max-width: 100% !important;
-}
-
 body {
-    /* background-image: url("assets/images/menu-area-restrita/background.jpg"); */
+    background-image: url("assets/images/menu-area-restrita/fundobranco.png");
 }
 
 /* CSS especifico para sobrescrever configurações padrão do PrimeNG para sistema de controle de versão RENATO VIRTO*/
@@ -113,11 +108,8 @@ p-button {
     margin: 2px;
 }
 
-
-/* --------- Limitar tamanho do escrito do dropdown, para nao quebrar ---------- */
-
-.ui-dropdown-label-container {
-
-    width: 100% !important;
-    max-width: 100% !important;
+.ui-column-title {
+    margin: 0 !important;
+    text-align: center !important;
+    width: 100%;
 }

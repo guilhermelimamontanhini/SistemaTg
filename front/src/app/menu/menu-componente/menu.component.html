@@ -1,36 +1,34 @@
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar w/ text</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Alistados</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Dispensados</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Atiradores</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Desligados</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pelotões</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Guardas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Relatorios</a>
-          </li>
-        </ul>
-        <!-- <span class="navbar-text">
-          Navbar text with an inline element
-        </span> -->
-      </div>
-    </div>
-  </nav>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #41915d;">
+  <a class="navbar-brand" href=""><img style="height: 40px;width: 40px;" src="../../../assets/images/menu-area-restrita/brasao.png" ></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link text-light" href="">Atiradores <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/alistados" >Alistados</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="#">Guardas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="#">Pelotões</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Recursos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#" >Relatorios</a>
+          <a class="dropdown-item" href="#">FATT</a>
+          <a class="dropdown-item" href="/dispensados" >Dispensados</a>
+          <a class="dropdown-item" href="#">Desligados</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div style="background-color: #b1eb25; height: 25px;"></div>

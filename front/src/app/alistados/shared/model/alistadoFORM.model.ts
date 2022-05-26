@@ -1,6 +1,5 @@
-export class Alistados {
+export class AlistadosFORM {
 
-    idAlistado: Number;
     nome: String;
     cpf: String;
     refratario: String;
