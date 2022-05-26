@@ -120,7 +120,6 @@ public class AtiradorService {
 		
 		Atirador atirador = atualizarAtirador.atualizarDadosDoAtirador(ra, atiradorRepository);
 		
-	  //if(atirador) {
 			try {
 				atiradorRepository.save(atirador);
 				valido = true;
@@ -132,11 +131,6 @@ public class AtiradorService {
 						.status(HttpStatus.BAD_REQUEST)
 						.body(mensagem);
 			}
-		//} else {
-		//	return ResponseEntity
-		//			.status(HttpStatus.NOT_FOUND)
-		//			.body("Alistado não existe");
-		//}
 		
 		return ResponseEntity
 				.status(valido ? HttpStatus.CREATED : HttpStatus.UNPROCESSABLE_ENTITY)

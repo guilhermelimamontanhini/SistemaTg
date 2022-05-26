@@ -6,7 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
+
+import tg.Guardas.FORM.NovaGuarda;
 
 @Entity
 @Table(name = "guardas")
@@ -27,8 +30,16 @@ public class Guardas {
 	@Size(max = 15)
 	@Column(name = "integrante")
 	private String nomeGuerraIntegrante;
+
+	public Guardas() {
+
+	}
 	
-	private String ocorrencias;
+	public Guardas(@Valid NovaGuarda novaGuarda, String nomeGuerra) {
+		this.tipoGuarda = novaGuarda.getTipoGuarda();
+		this.dataGuarda = novaGuarda.getDataGuarda();
+		this.nomeGuerraIntegrante = nomeGuerra;
+	}
 
 	public Long getIdGuarda() {
 		return idGuarda;
@@ -60,14 +71,6 @@ public class Guardas {
 
 	public void setNomeGuerraIntegrante(String nomeGuerraIntegrante) {
 		this.nomeGuerraIntegrante = nomeGuerraIntegrante;
-	}
-
-	public String getOcorrencias() {
-		return ocorrencias;
-	}
-
-	public void setOcorrencias(String ocorrencias) {
-		this.ocorrencias = ocorrencias;
 	}
 	
 

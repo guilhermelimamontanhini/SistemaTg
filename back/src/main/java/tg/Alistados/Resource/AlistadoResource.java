@@ -21,6 +21,7 @@ import tg.Alistados.FORM.AlistadoFORM;
 import tg.Alistados.Service.AlistadoService;
 import tg.Auxiliares.Motivo.MensagemMotivos;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/alistado")
 public class AlistadoResource {
@@ -33,7 +34,7 @@ public class AlistadoResource {
 	 * @description Método responsável por listar todos os alistados
 	 * @return ResponseEntity<List<AlistadoDTO>>
 	 * */
-	@CrossOrigin(origins = "http://localhost:4200")
+	
 	@GetMapping
 	public ResponseEntity<List<AlistadoDTO>> listarAlistados() {
 		return alistadoService.listarAlistados();

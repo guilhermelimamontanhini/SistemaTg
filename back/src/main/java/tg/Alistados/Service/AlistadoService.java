@@ -38,7 +38,7 @@ public class AlistadoService {
 	 * */
 	public ResponseEntity<List<AlistadoDTO>> listarAlistados() {
 		
-	    List<Alistado> alistados = this.alistadoRepository.findAll();
+	    List<Alistado> alistados = this.alistadoRepository.findAllByOrderByNomeAsc();
 	    
 		if(alistados.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Não existem alistados cadastrados!");

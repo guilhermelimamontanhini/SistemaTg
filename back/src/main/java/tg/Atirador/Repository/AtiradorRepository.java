@@ -10,7 +10,9 @@ import tg.Atirador.Model.Atirador;
 public interface AtiradorRepository extends JpaRepository<Atirador, Long> {
 	
 	Optional<Atirador> findByRa(Long ra);
+	Optional<Atirador> findByNomeGuerra(String nomeGuerra);
 	List<Atirador> findAllByOrderByNomeAsc();
 	List<Atirador> findAllByNumeroPelotaoOrderByNomeAsc(Integer numeroPelotao);
+	
 	               
 }
