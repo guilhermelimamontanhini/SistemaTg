@@ -13,6 +13,11 @@ import { AlistadosModule } from './alistados/alistados.module';
 import { DispensadosModule } from './dispensados/dispensados.module';
 import { MenuModule } from './menu/menu.module';
 import { AtiradorModule } from './atirador/atirador.module';
+import { DesligadosModule } from './desligados/desligados.module';
+import { GuardasModule } from './guardas/guardas.module';
+import { FattModule } from './fatt/fatt.module';
+import { PelotoesModule } from './pelotoes/pelotoes.module';
+import { RelatoriosModule } from './relatorios/relatorios.module';
 
 @NgModule({
     declarations: [
@@ -23,6 +28,11 @@ import { AtiradorModule } from './atirador/atirador.module';
         AtiradorModule,
         AlistadosModule,
         DispensadosModule,
+        DesligadosModule,
+        GuardasModule,
+        FattModule,
+        PelotoesModule,
+        RelatoriosModule,
         BrowserModule,
         HttpModule,
         ToastyModule.forRoot(),
