@@ -1,1 +1,88 @@
-<p>dispensados-componente works!</p>
+<br>
+
+<div class="container">
+    <div class="row"> 
+       <div class="col-12"> 
+           <div class="tituloPagina">Dispensados</div>
+            <p-table #tabelaDispensado [paginator]="true" [rows]="10" [responsive]="true" [columns]="colunasTabela" [value]="dispensados" [globalFilterFields]="['nome']">
+ 
+               <ng-template pTemplate="caption">
+                   <div class="container p-0">
+                     <div class="row">
+                        <!-- [disabled]="desabilitarBotoes || spinnerTabela" (click)="abrirDialogDeCadastrarAlistado()" -->
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-6 text-left botao-tabela">
+                            <button class="btn btn-success">
+                                <i class="fas fa-fw" [ngClass]="spinnerTabela ? 'fa-spin fa-circle-notch' : 'fa-plus'"></i>
+                                <!--  -->
+                                Novo dispensado
+                            </button>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-12 col-12 text-right input-tabela">
+                            <i class="fas fa-fw fa-search icone-busca mr-2"></i>
+                            <input (input)="tabelaDispensado.filterGlobal($event.target.value, 'contains')"
+                               class="form-control bloco m-0 largura-input-cabecalho btn-pesquisa mr-1 pr-0 "
+                               style="display: inline !important;" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                         </div>
+                     </div>
+                 </div>
+              </ng-template>
+ 
+             <ng-template pTemplate="header" let-dispensadoCabecalho>
+                 <tr>
+                     <th *ngFor="let dispensado of dispensadoCabecalho" [ngClass]="dispensado.style" [pSortableColumn]="dispensado.field">
+                             <p-sortIcon [field]="dispensado.field" *ngIf="dispensado.field !== 'acao'"></p-sortIcon>
+                             {{ dispensado.header }}
+                     </th>
+                 </tr>
+             </ng-template>
+ 
+             <ng-template pTemplate="body" let-dispensadoCorpo>
+                 <tr>
+                    <td class="texto-cabecalho">
+                         <span class="ui-column-title">
+                             CPF
+                         </span>
+                         {{ dispensadoCorpo.cpf }}
+                    </td>
+                    <td>
+                        <span class="ui-column-title">
+                            Nome
+                        </span>
+                        {{ dispensadoCorpo.nome }}
+                   </td>
+                   <!-- <td class="texto-cabecalho">
+                        <span class="ui-column-title">
+                            Motivo
+                        </span>
+                        {{ dispensadoCorpo.motivo }}
+                    </td> -->
+                    <td class="texto-cabecalho">
+                         <span class="ui-column-title">
+                            Ação
+                         </span>
+                        <button type="button" class="btn btn-info text-white ml-2" [disabled]="" pTooltip="Ver o motivo">
+                            <i class="fas fa-fw fa-info"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger text-white ml-2" [disabled]="" pTooltip="Deletar dispensado">
+                            <i class="fas fa-fw fa-trash"></i>
+                        </button>
+                    </td>
+                 </tr>
+             </ng-template>
+ 
+             <ng-template pTemplate="emptymessage" let-alistadoVazio>
+                 <tr class="text-center">
+                     <td class="altura-spinner text-center mt-3 pt-4" [attr.colspan]="alistadoVazio.length" *ngIf="spinnerTabela">
+                          <p-progressSpinner [animationDuration]="'.75s'" strokeWidth="4" fill="#EEEEEE"></p-progressSpinner>
+                     </td>
+                     <td class="text-center" [attr.colspan]="alistadoVazio.length" *ngIf="!spinnerTabela">
+                          Nenhum Registro Encontrado
+                     </td>
+                  </tr>
+             </ng-template>
+ 
+         </p-table>
+       </div>
+    </div> 	
+ </div>

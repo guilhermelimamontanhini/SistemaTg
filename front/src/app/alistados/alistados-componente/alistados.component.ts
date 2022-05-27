@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastyService } from 'ng2-toasty';
+import { MensagemMotivos } from 'src/app/models/mensagemMotivos.model';
 import { AlistadosFORM } from '../shared/model/alistadoFORM.model';
 import { Alistados } from '../shared/model/alistados.model';
 import { AlistadoService } from '../shared/service/alistado.service';
@@ -13,6 +14,7 @@ export class AlistadosComponente implements OnInit {
 
   public alistados: Alistados[] = [];
   public alistadoCadastradoOuNovo: AlistadosFORM = new AlistadosFORM;
+  public mensagemMotivoDispensamento: MensagemMotivos = new MensagemMotivos;
   public colunasTabela: any[];
 
   public spinnerTabela: boolean;
@@ -20,7 +22,9 @@ export class AlistadosComponente implements OnInit {
   public desabilitarBotoes: boolean;
   public cadastrarOuEditar: boolean;
   public dialogCadastrarEditarAlistado: boolean;
+  public dialogDispensarAlistado: boolean;
 
+  public idAlistado: Number;
   public nomeAlistadoCadastrarEditar: String;
   public cpfAlistadoCadastrarEditar: String;
   public refratarioCadastrarEditar: String;
@@ -40,16 +44,15 @@ export class AlistadosComponente implements OnInit {
   ngOnInit(): void {
     this.listarTodosOsAlistados();
   }
-  
-  getEventValue($event:any) :string {
-    return $event.target.value;
-  } 
 
   public listarTodosOsAlistados(): void {
+    this.alistados = [];
+    console.log(this.alistados);
     this.spinnerTabela = true;
     this.alistadoService.listarTodosAlistados().subscribe(
-      (alistados: Alistados[]) => {
-          this.alistados = alistados;
+      (alistadosRetornados: Alistados[]) => {
+          this.alistados = alistadosRetornados;
+          console.log(this.alistados);
           this.spinnerTabela = false;
       }, (erro) => {
         this.spinnerTabela = false;
@@ -65,6 +68,7 @@ export class AlistadosComponente implements OnInit {
   }
 
   public abrirDialogDeEditarAlistado(alistado: Alistados): void {
+    this.idAlistado = alistado.idAlistado;
     this.nomeAlistadoCadastrarEditar = alistado.nome;
     this.cpfAlistadoCadastrarEditar = alistado.cpf;
     this.refratarioCadastrarEditar = alistado.refratario;
@@ -73,10 +77,15 @@ export class AlistadosComponente implements OnInit {
     this.cadastrarOuEditar = false;
   }
 
-  public fecharDialogDeCadastrarAlistado(): void {
+  public fecharDialogDeCadastrarEditarAlistado(): void {
     this.dialogCadastrarEditarAlistado = false;
     this.desabilitarBotoes = false;
     this.alistadoCadastradoOuNovo = new AlistadosFORM;
+    this.idAlistado = 0;
+    this.nomeAlistadoCadastrarEditar = '';
+    this.cpfAlistadoCadastrarEditar = '';
+    this.refratarioCadastrarEditar = '';
+    this.listarTodosOsAlistados();
   }
 
   public editarOuCadastrarAlistado(): void {
@@ -86,22 +95,60 @@ export class AlistadosComponente implements OnInit {
       this.alistadoCadastradoOuNovo.cpf = this.cpfAlistadoCadastrarEditar;
       this.alistadoCadastradoOuNovo.refratario = this.refratarioCadastrarEditar;
 
-      console.log(this.alistadoCadastradoOuNovo);
 
      if(this.cadastrarOuEditar) {
+      //  Cadastrar
       this.alistadoService.cadastrarAlistado(this.alistadoCadastradoOuNovo).subscribe(
         () => {
           this.spinnerConfirmar = false;
-          this.listarTodosOsAlistados();
-          this.fecharDialogDeCadastrarAlistado();
+          this.fecharDialogDeCadastrarEditarAlistado();
         }, 
         error => {
           this.spinnerConfirmar = false;
-          this.fecharDialogDeCadastrarAlistado();
+          this.fecharDialogDeCadastrarEditarAlistado();
         }
       )
+     } else {
+      //  Editar
+       this.alistadoService.atualizarAlistado(this.idAlistado, this.alistadoCadastradoOuNovo).subscribe(
+         () => {
+          this.spinnerConfirmar = false;
+          this.fecharDialogDeCadastrarEditarAlistado();
+         }, 
+         error => {
+          this.spinnerConfirmar = false;
+          this.fecharDialogDeCadastrarEditarAlistado();
+         }
+       )
      }
 
   }
+
+  public abrirDialogDispensarAlistado(alistado: Alistados) {
+    this.dialogDispensarAlistado = true;
+    this.idAlistado = alistado.idAlistado;
+  }
+
+  public fecharDialogDispensarAlistado() {
+    this.dialogDispensarAlistado = false;
+    this.mensagemMotivoDispensamento = new MensagemMotivos;
+    this.listarTodosOsAlistados();
+  }
+
+  public dispensarAlistado() {
+    this.spinnerConfirmar = true;
+
+    this.alistadoService.dispensarAlistado(this.idAlistado, this.mensagemMotivoDispensamento).subscribe(
+      () => {
+        this.spinnerConfirmar = false;
+        this.fecharDialogDispensarAlistado();
+      }, 
+      erro => {
+        this.spinnerConfirmar = false;
+        this.fecharDialogDispensarAlistado();
+      }
+    )
+  }
+
 
 }

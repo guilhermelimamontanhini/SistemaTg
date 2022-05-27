@@ -4,6 +4,7 @@ import { ConexaoService } from 'src/app/conexao/conexao.service';
 import { Alistados } from '../model/alistados.model';
 import { Observable } from 'rxjs';
 import { AlistadosFORM } from '../model/alistadoFORM.model';
+import { MensagemMotivos } from 'src/app/models/mensagemMotivos.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,14 @@ export class AlistadoService {
 
   public cadastrarAlistado(alistado: AlistadosFORM): Observable<AlistadosFORM> {
     return this.http.post<AlistadosFORM>(this.conexao.getServidor() + `/alistado/cadastrar`, alistado);
+  }
+
+  public atualizarAlistado(id: Number, alistado: AlistadosFORM): Observable<AlistadosFORM> {
+    return this.http.put<AlistadosFORM>(this.conexao.getServidor() + `/alistado/atualizar/` + id, alistado);
+  }
+
+  public dispensarAlistado(id: Number, mensagemMotivos: MensagemMotivos) {
+    return this.http.post(this.conexao.getServidor() + `/alistado/dispensar/` + id, mensagemMotivos);
   }
 
 }

@@ -49,3 +49,13 @@
 .coluna-acao {
     width: 13%;
 }
+
+.textAreaEmail {
+    width: 100%; 
+    resize: none;
+    height: 100px;
+}
+
+.start-timer{
+    width: 100px;
+    }

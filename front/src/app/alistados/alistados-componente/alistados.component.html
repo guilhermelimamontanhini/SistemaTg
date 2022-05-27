@@ -1,6 +1,3 @@
-<!-- <app-menu></app-menu> -->
-<!-- <p>alistados-componente works!</p>
-<i class="fa fa-fw fa-info"></i> -->
 <br>
 
 <div class="container">
@@ -14,9 +11,8 @@
                      <div class="row">
 
                         <div class="col-12 col-sm-12 col-md-4 col-lg-6 text-left botao-tabela">
-                            <button class="btn btn-success" [disabled]="desabilitarBotoes" (click)="abrirDialogDeCadastrarAlistado()">
+                            <button class="btn btn-success" [disabled]="desabilitarBotoes || spinnerTabela" (click)="abrirDialogDeCadastrarAlistado()">
                                 <i class="fas fa-fw" [ngClass]="spinnerTabela ? 'fa-spin fa-circle-notch' : 'fa-plus'"></i>
-                                <!--  -->
                                 Novo alistado
                             </button>
                         </div>
@@ -34,7 +30,7 @@
              <ng-template pTemplate="header" let-alistadoCabecalho>
                  <tr>
                      <th *ngFor="let cabecalho of alistadoCabecalho" [ngClass]="cabecalho.style" [pSortableColumn]="cabecalho.field">
-                             <p-sortIcon [field]="cabecalho.field" *ngIf="cabecalho.field !== 'descricao'"></p-sortIcon>
+                             <p-sortIcon [field]="cabecalho.field" *ngIf="cabecalho.field !== 'acao'"></p-sortIcon>
                              {{ cabecalho.header }}
                      </th>
                  </tr>
@@ -68,7 +64,7 @@
                          (click)="abrirDialogDeEditarAlistado(alistadoCorpo)">
                             <i class="fas fa-fw fa-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-danger text-white ml-2" [disabled]="desabilitarBotoes" pTooltip="Dispensar alistado">
+                        <button type="button" class="btn btn-danger text-white ml-2" [disabled]="desabilitarBotoes" pTooltip="Dispensar alistado" (click)="abrirDialogDispensarAlistado(alistadoCorpo)">
                             <i class="fas fa-fw fa-trash"></i>
                         </button>
                     </td>
@@ -96,27 +92,29 @@
     [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
     
     <p-header>
-        <b>Cadastrar Alistado</b>
+        <b>{{this.cadastrarOuEditar ? "Cadastrar Alistado" : "Editar Alistado"}}</b>
     </p-header>
    
     <div class="row">
         <div class="col-12">
             <label for="nome">
                 <b>Nome:</b>
-                <span class="is-invalid" *ngIf="!nomeAlistadoCadastrarEditar" pTooltip="Campo obrigatório">*</span>
+                <span class="is-invalid text-danger" *ngIf="!nomeAlistadoCadastrarEditar" pTooltip="Campo obrigatório">*</span>
             </label>
             <input id="nome" style="width: 100%;" autocomplete="off" pInputText type="text" 
                 [(ngModel)]="nomeAlistadoCadastrarEditar">
         </div>
-        <div class="col-12">
+        <div class="col-12 mt-2">
             <label for="cpf">
                 <b>CPF:</b>
-                <span class="is-invalid" *ngIf="!cpfAlistadoCadastrarEditar" pTooltip="Campo obrigatório">*</span>
+                <span class="is-invalid text-danger" *ngIf="!cpfAlistadoCadastrarEditar" pTooltip="Campo obrigatório">*</span>
             </label>
+            <!-- <p-inputMask mask="999.999.999-99" [(ngModel)]="cpfAlistadoCadastrarEditar" placeholder="999.999.999-99"></p-inputMask> -->
             <input id="cpf" style="width: 100%;" autocomplete="off" pInputText type="text" 
-                [(ngModel)]="cpfAlistadoCadastrarEditar">
+                [(ngModel)]="cpfAlistadoCadastrarEditar" placeholder="000.000.000-00" ui-br-cpf-mask>
         </div>
-        <div class="col-12">
+        <div class="col-12 mt-2">
+            <span class="mr-1">Refratário: </span>
             Sim
             <p-radioButton name="refratarioSim" value="S" [(ngModel)]="refratarioCadastrarEditar"></p-radioButton>
             Não
@@ -126,7 +124,7 @@
     
     <p-footer>
        
-        <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogDeCadastrarAlistado()">
+        <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogDeCadastrarEditarAlistado()">
             <i class="fas fa-fw fa-times"></i>
             Cancelar
         </button>
@@ -135,6 +133,39 @@
             [disabled]="spinnerConfirmar"
             (click)="editarOuCadastrarAlistado()"
             >
+            <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+            Confirmar
+        </button>
+        
+    </p-footer>
+  
+</p-dialog>
+
+<p-dialog [(visible)]="dialogDispensarAlistado" [draggable]="false" [closable]="false" [modal]="true"
+    [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
+    
+    <p-header>
+        <b>Dispensar Alistado</b>
+    </p-header>
+   
+    <div class="row">
+        <div class="col-12 p-20">
+            <p class="mt-1"><b>Motivo: </b></p>
+            <textarea [(ngModel)]="mensagemMotivoDispensamento.motivo"
+                autocomplete="off" class="textAreaEmail m-0 mt-1"> </textarea>
+        </div>
+    </div>
+    
+    <p-footer>
+       
+        <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogDispensarAlistado()">
+            <i class="fas fa-fw fa-times"></i>
+            Cancelar
+        </button>
+        
+        <button class="btn btn-success m-0"
+            [disabled]="spinnerConfirmar"
+            (click)="dispensarAlistado()">
             <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
             Confirmar
         </button>
