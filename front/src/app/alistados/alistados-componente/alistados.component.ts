@@ -52,7 +52,6 @@ export class AlistadosComponente implements OnInit {
     this.alistadoService.listarTodosAlistados().subscribe(
       (alistadosRetornados: Alistados[]) => {
           this.alistados = alistadosRetornados;
-          console.log(this.alistados);
           this.spinnerTabela = false;
       }, (erro) => {
         this.spinnerTabela = false;
@@ -95,13 +94,15 @@ export class AlistadosComponente implements OnInit {
       this.alistadoCadastradoOuNovo.cpf = this.cpfAlistadoCadastrarEditar;
       this.alistadoCadastradoOuNovo.refratario = this.refratarioCadastrarEditar;
 
-
+     this.toasty.clearAll();
      if(this.cadastrarOuEditar) {
       //  Cadastrar
       this.alistadoService.cadastrarAlistado(this.alistadoCadastradoOuNovo).subscribe(
         () => {
           this.spinnerConfirmar = false;
           this.fecharDialogDeCadastrarEditarAlistado();
+          
+          this.toasty.success("Alistado cadastrado com sucesso");
         }, 
         error => {
           this.spinnerConfirmar = false;
@@ -114,10 +115,16 @@ export class AlistadosComponente implements OnInit {
          () => {
           this.spinnerConfirmar = false;
           this.fecharDialogDeCadastrarEditarAlistado();
+          this.toasty.success("Alistado editar com sucesso");
          }, 
-         error => {
+         erro => {
           this.spinnerConfirmar = false;
           this.fecharDialogDeCadastrarEditarAlistado();
+          if(erro.status == 400) {
+            this.toasty.warning("Erro ao cadastrar alistado.");
+          } else {
+            this.toasty.error("Erro de conexão");
+          }
          }
        )
      }
@@ -145,6 +152,13 @@ export class AlistadosComponente implements OnInit {
       }, 
       erro => {
         this.spinnerConfirmar = false;
+        if(erro.status == 400) {
+          this.toasty.warning("Erro ao dispensar alistado.");
+        } else if (erro.status == 404) {
+          this.toasty.warning("Alistado não existe");
+        } else if (erro.status == 422) {
+          this.toasty.warning("Alguns registros estão repedidos")
+        }
         this.fecharDialogDispensarAlistado();
       }
     )

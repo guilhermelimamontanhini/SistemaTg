@@ -11,7 +11,7 @@ export class AppComponent {
   public podeCarregar: boolean = false;
 
   constructor(private toastyConfig: ToastyConfig) {
-   
+    this.toastyConfig.theme = 'bootstrap';
   }
 
 }

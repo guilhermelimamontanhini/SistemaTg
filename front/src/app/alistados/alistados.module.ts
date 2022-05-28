@@ -10,6 +10,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {InputMaskModule} from 'primeng/inputmask';
+import { ToastyModule } from 'ng2-toasty';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {InputMaskModule} from 'primeng/inputmask';
     CheckboxModule,
     InputTextModule,
     RadioButtonModule,
-    InputMaskModule
+    InputMaskModule,
+    ToastyModule.forRoot(),
   ], exports: [
     AlistadosComponente
   ]
