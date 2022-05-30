@@ -87,6 +87,8 @@
     </div> 	
  </div>
 
+ <br>
+ <br>
 
  <p-dialog [(visible)]="dialogCadastrarEditarAlistado" [draggable]="false" [closable]="false" [modal]="true"
     [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
@@ -130,7 +132,7 @@
         </button>
         
         <button class="btn btn-success m-0"
-            [disabled]="spinnerConfirmar"
+            [disabled]="spinnerConfirmar || !cpfAlistadoCadastrarEditar || !nomeAlistadoCadastrarEditar"
             (click)="editarOuCadastrarAlistado()"
             >
             <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
@@ -164,7 +166,7 @@
         </button>
         
         <button class="btn btn-success m-0"
-            [disabled]="spinnerConfirmar"
+            [disabled]="spinnerConfirmar || !mensagemMotivoDispensamento.motivo"
             (click)="dispensarAlistado()">
             <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
             Confirmar

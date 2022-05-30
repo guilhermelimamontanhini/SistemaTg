@@ -49,3 +49,9 @@
 .coluna-acao {
     width: 13%;
 }
+
+.textAreaMotivo {
+    width: 100%; 
+    resize: none;
+    height: 100px;
+}

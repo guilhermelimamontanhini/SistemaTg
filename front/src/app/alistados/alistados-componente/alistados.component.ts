@@ -27,7 +27,7 @@ export class AlistadosComponente implements OnInit {
   public idAlistado: Number;
   public nomeAlistadoCadastrarEditar: String;
   public cpfAlistadoCadastrarEditar: String;
-  public refratarioCadastrarEditar: String;
+  public refratarioCadastrarEditar: String = "N";
 
   constructor(
     private toasty: ToastyService,
@@ -55,7 +55,11 @@ export class AlistadosComponente implements OnInit {
           this.spinnerTabela = false;
       }, (erro) => {
         this.spinnerTabela = false;
-        this.toasty.error('Erro de conexão');
+        if(erro.status == 404) {
+          this.toasty.warning('Não existem alistados cadastrados!');
+        } else {
+          this.toasty.error('Erro de conexão');
+        }
       }
     )
   }
@@ -104,9 +108,12 @@ export class AlistadosComponente implements OnInit {
           
           this.toasty.success("Alistado cadastrado com sucesso");
         }, 
-        error => {
-          this.spinnerConfirmar = false;
-          this.fecharDialogDeCadastrarEditarAlistado();
+        (erro) => {
+          if(erro.status === 201) {
+            this.toasty.success("Alistado cadastrado com sucesso");
+            this.spinnerConfirmar = false;
+            this.fecharDialogDeCadastrarEditarAlistado();
+          }
         }
       )
      } else {
@@ -147,11 +154,15 @@ export class AlistadosComponente implements OnInit {
 
     this.alistadoService.dispensarAlistado(this.idAlistado, this.mensagemMotivoDispensamento).subscribe(
       () => {
-        this.spinnerConfirmar = false;
-        this.fecharDialogDispensarAlistado();
+        
+        // this.spinnerConfirmar = false;
+        // this.fecharDialogDispensarAlistado();
       }, 
       erro => {
         this.spinnerConfirmar = false;
+        if (erro.status == 200) {
+          this.toasty.success('Alistado dispensado com sucesso');
+        }
         if(erro.status == 400) {
           this.toasty.warning("Erro ao dispensar alistado.");
         } else if (erro.status == 404) {

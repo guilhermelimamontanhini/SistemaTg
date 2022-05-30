@@ -15,4 +15,8 @@ export class DispensadosService {
     return this.http.get<Dispensados[]>(this.conexao.getServidor() + `/dispensado`);
   }
 
+  public deletarDispensado(id: Number): any {
+    return this.http.delete(this.conexao.getServidor() + `/dispensado/deletar/` + id);
+  }
+
 }
