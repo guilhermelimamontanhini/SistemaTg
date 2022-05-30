@@ -70,7 +70,7 @@ public class AlistadoResource {
 	 * @param <String> motivo
 	 * @return ResponseEntity<String>
 	 * */
-	@DeleteMapping("/dispensar/{id}")
+	@PostMapping("/dispensar/{id}")
 	public ResponseEntity<String> dispensarAlistado(@PathVariable Long id, @RequestBody @Valid MensagemMotivos mensagemMotivos) {
 		return this.alistadoService.dispensarAlistado(id, mensagemMotivos);
 	}
