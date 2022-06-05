@@ -56,12 +56,12 @@
                  </tr>
              </ng-template>
  
-             <ng-template pTemplate="emptymessage" let-alistadoVazio>
+             <ng-template pTemplate="emptymessage" let-dispensadoVazio>
                  <tr class="text-center">
-                     <td class="altura-spinner text-center mt-3 pt-4" [attr.colspan]="alistadoVazio.length" *ngIf="spinnerTabela">
+                     <td class="altura-spinner text-center mt-3 pt-4" [attr.colspan]="dispensadoVazio.length" *ngIf="spinnerTabela">
                           <p-progressSpinner [animationDuration]="'.75s'" strokeWidth="4" fill="#EEEEEE"></p-progressSpinner>
                      </td>
-                     <td class="text-center" [attr.colspan]="alistadoVazio.length" *ngIf="!spinnerTabela">
+                     <td class="text-center" [attr.colspan]="dispensadoVazio.length" *ngIf="!spinnerTabela">
                           Nenhum Registro Encontrado
                      </td>
                   </tr>

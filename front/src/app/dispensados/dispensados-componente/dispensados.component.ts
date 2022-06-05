@@ -45,7 +45,7 @@ export class DispensadosComponente implements OnInit {
       }, (erro) => {
         this.spinnerTabela = false;
         if (erro.status == 404) {
-          this.toasty.warning('Não existem dispensados cadastradas!');
+          this.toasty.warning('Não existem dispensados cadastrados!');
         } else {
           this.toasty.error('Erro de conexão');
         }
@@ -71,7 +71,6 @@ export class DispensadosComponente implements OnInit {
 
   public fecharDialogDeletar() {
     this.dispensadoDeletado = new Dispensados();
-    console.log("to aqui");
     this.dialogDeletar = false;
   }
 

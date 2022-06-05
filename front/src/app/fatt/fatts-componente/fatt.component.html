@@ -1,1 +1,166 @@
-<p>fatt works!</p>
+<br>
+
+<div class="container">
+    <div class="row"> 
+       <div class="col-12"> 
+           <div class="tituloPagina">FATT</div>
+            <p-table #tabelaFatt [paginator]="true" [rows]="10" [responsive]="true" [columns]="colunasTabela" [value]="fatts" [globalFilterFields]="['nome']">
+ 
+                <ng-template pTemplate="caption">
+                    <div class="container p-0">
+                        <div class="row">
+                            <div class="col-12 text-right input-tabela">
+                                <i class="fas fa-fw fa-search icone-busca mr-2"></i>
+                                <input (input)="tabelaFatt.filterGlobal($event.target.value, 'contains')"
+                                    class="form-control bloco m-0 largura-input-cabecalho btn-pesquisa mr-1 pr-0 "
+                                    style="display: inline !important;" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+ 
+                <ng-template pTemplate="header" let-fattsCabecalho>
+                    <tr>
+                        <th *ngFor="let fatts of fattsCabecalho" [ngClass]="fatts.style" [pSortableColumn]="fatts.field">
+                                <p-sortIcon [field]="fatts.field" *ngIf="fatts.field !== 'acao'"></p-sortIcon>
+                                    {{ fatts.header }}
+                        </th>
+                    </tr>
+                </ng-template>
+ 
+                <ng-template pTemplate="body" let-fattsCorpo>
+                    <tr>
+                        <td class="texto-cabecalho">
+                            <span class="ui-column-title">
+                                RA
+                            </span>
+                            {{ fattsCorpo.raAtirador }}
+                        </td>
+                        <td class="texto-cabecalho">
+                            <span class="ui-column-title">
+                                Nome de Guerra
+                            </span>
+                            {{ fattsCorpo.nomeGuerra }}
+                        </td>
+                        <td class="texto-cabecalho">
+                            <span class="ui-column-title">
+                                Ocorrência
+                            </span>
+                            {{ fattsCorpo.ocorrencia }}
+                        </td>
+                        <td class="texto-cabecalho">
+                            <span class="ui-column-title">
+                                Justificativa
+                            </span>
+                            {{ fattsCorpo.justificativa ? fattsCorpo.justificativa : "Não se justificou" }}
+                        </td>
+                        <td class="texto-cabecalho">
+                            <span class="ui-column-title">
+                                Ação
+                            </span>
+                            <button type="button" class="btn btn-warning text-white" [disabled]="desabilitarBotoes" pTooltip="Adicionar justificativa" (click)="abrirDialogDeAdicionarJustificativa(fattsCorpo.idFatt)">
+                                <i class="fas fa-fw fa-pen-square"></i>
+                            </button>
+                            <button type="button" class="btn btn-dark ml-2" [disabled]="desabilitarBotoes" pTooltip="Aplicar FATT" (click)="abrirDialogDeAplicarFATT(fattsCorpo)">
+                                <i class="fas fa-fw fa-address-book"></i>
+                            </button>
+                        </td>
+                    </tr>
+                 </ng-template>
+ 
+                <ng-template pTemplate="emptymessage" let-fattsVazio>
+                    <tr class="text-center">
+                        <td class="altura-spinner text-center mt-3 pt-4" [attr.colspan]="fattsVazio.length" *ngIf="spinnerTabela">
+                            <p-progressSpinner [animationDuration]="'.75s'" strokeWidth="4" fill="#EEEEEE"></p-progressSpinner>
+                        </td>
+                        <td class="text-center" [attr.colspan]="fattsVazio.length" *ngIf="!spinnerTabela">
+                            Nenhum Registro Encontrado
+                        </td>
+                    </tr>
+                </ng-template>
+ 
+            </p-table>
+        </div>
+    </div> 	
+</div>
+
+ <br>
+ <br>
+
+ <p-dialog [(visible)]="dialogJustificativa" [draggable]="false" [closable]="false" [modal]="true"
+ [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '30vw'}">
+ 
+    <p-header>
+        <b>Adicionar justificativa</b>
+    </p-header>
+
+    <div class="row">
+        <div class="col-12 p-20">
+            <textarea [(ngModel)]="this.justificativaAdicionada.justificativa"
+                autocomplete="off" class="textAreaMotivo m-0 mt-1"> </textarea>
+        </div>
+    </div>
+    
+    <p-footer>
+        
+        <button class="btn btn-danger" (click)="fecharDialogDeAdicionarJustificativa()">
+            <i class="fas fa-fw fa-times"></i>
+            Fechar
+        </button>
+
+        <button class="btn btn-success m-0"
+            [disabled]="desabilitarBotoes"
+            (click)="adicionarJustificativaAoFATT()">
+            <i class="fas fa-fw" [ngClass]="desabilitarBotoes ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+            Confirmar
+        </button>
+        
+    </p-footer>
+
+</p-dialog>
+
+<p-dialog [(visible)]="dialogAplicar" [draggable]="false" [closable]="false" [modal]="true"
+    [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
+    
+    <p-header>
+        <b>Aplicar FATT</b>
+    </p-header>
+
+    <div class="row">
+        <div class="col-12 p-20">
+            <textarea [(ngModel)]="this.justificativaAdicionada.justificativa"
+                autocomplete="off" class="textAreaMotivo m-0 mt-1" disabled="true"> </textarea>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-12 p-10">
+            Deseja excluir <b>{{nomeDeGuerra}}</b> permanentemente da base dados?
+        </div>
+    </div>
+
+    <div class="col-12 mt-2">
+        <span class="mr-1">Justificado?: </span>
+        Sim
+        <p-radioButton name="justificadoSim" value="true" [(ngModel)]="ocorrenciaJustificada"></p-radioButton>
+        Não
+        <p-radioButton name="justificadoNao" value="false" [(ngModel)]="ocorrenciaJustificada"></p-radioButton>
+    </div>
+
+    <p-footer>
+       
+        <button [disabled]="desabilitarBotoes" class="btn btn-danger" (click)="fecharDialogDeAplicarFATT()">
+            <i class="fas fa-fw fa-times"></i>
+            Cancelar
+        </button>
+        
+        <button class="btn btn-success m-0"
+            [disabled]="desabilitarBotoes"
+            (click)="aplicarFATT()">
+            <i class="fas fa-fw" [ngClass]="desabilitarBotoes ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+            Confirmar
+        </button>
+        
+    </p-footer>
+  
+</p-dialog>

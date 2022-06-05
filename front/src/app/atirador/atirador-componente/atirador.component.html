@@ -10,7 +10,7 @@
                 <div class="container p-0">
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-4 col-lg-6 text-left botao-tabela">
-                            <button class="btn btn-success">
+                            <button class="btn btn-success" (click)="abrirDialogCadastrarAtirador()">
                                 <i class="fas fa-fw" [ngClass]="spinnerTabela ? 'fa-spin fa-circle-notch' : 'fa-plus'"></i>
                                 Novo atirador
                             </button>
@@ -67,23 +67,29 @@
                         </span>
                         {{ atiradorCorpo.ocupacao === 'A' ? "Atirador" : atiradorCorpo.ocupacao === 'C' ? "Aluno do Curso" : "Monitor" }}
                     </td>
+                    <!-- <td class="texto-cabecalho">
+                        <span class="ui-column-title">
+                            Pontos
+                        </span>
+                        {{ atiradorCorpo.pontos }}
+                    </td> -->
                     <td class="texto-cabecalho">
                          <span class="ui-column-title">
                             Ação
                          </span>
-                         <button class="btn btn-info mr-2" pTooltip="Visualizar informações">
+                         <button class="btn btn-info mr-2" pTooltip="Visualizar informações" (click)="abrirDialogInformacoes(atiradorCorpo)">
                             <i class="fas fa-fw fa-info"></i>
                          </button>
-                         <button class="btn btn btn-warning text-white mr-2" pTooltip="Editar atirador">
+                         <button class="btn btn btn-warning text-white mr-2" pTooltip="Editar atirador" (click)="abrirDialogEditarAtirador(atiradorCorpo)">
                             <i class="fas fa-fw fa-edit"></i>
                          </button>
-                         <button [ngStyle]="{'display':atiradorCorpo.ocupacao === 'C' ? 'none' : ''} " class="btn btn-primary mr-2" pTooltip="Promover atirador para aluno">
+                         <button [ngStyle]="{'display':atiradorCorpo.ocupacao === 'C' ? 'none' : ''} " class="btn btn-primary mr-2" pTooltip="Promover atirador para aluno" (click)="abrirDialogPromocao(atiradorCorpo)">
                             <i class="fas fa-fw fa-user-plus"></i>
                          </button>
-                         <button class="btn btn-orange mr-2" pTooltip="Adicionar FATT">
+                         <button class="btn btn-orange mr-2" pTooltip="Adicionar FATT" (click)="abrirDialogFATT(atiradorCorpo)">
                             <i class="fas fa-fw fa-plus-square"></i>
                          </button>
-                         <button class="btn btn-danger mr-2" pTooltip="Desligar atirador">
+                         <button class="btn btn-danger mr-2" pTooltip="Desligar atirador" (click)="abrirDialogDesligarAtirador(atiradorCorpo)">
                             <i class="fas fa-fw fa-trash"></i>
                          </button>
                     </td>
@@ -108,3 +114,273 @@
 
  <br>
  <br>
+
+ <p-dialog [(visible)]="dialogDesligarAtirador" [draggable]="false" [closable]="false" [modal]="true"
+    [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
+    
+    <p-header>
+        <b>Desligar Atirador</b>
+    </p-header>
+   
+    <div class="row">
+        <div class="col-12 p-20">
+            <p class="mt-1"><b>Motivo: </b></p>
+            <textarea [(ngModel)]="mensagemMotivoDesligamento.motivo"
+                autocomplete="off" class="textAreaEmail m-0 mt-1"> </textarea>
+        </div>
+    </div>
+    
+    <p-footer>
+       
+        <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogDesligarAtirador()">
+            <i class="fas fa-fw fa-times"></i>
+            Cancelar
+        </button>
+        
+        <button class="btn btn-success m-0"
+            [disabled]="spinnerConfirmar || !mensagemMotivoDesligamento.motivo"
+            (click)="desligarAtirador()">
+            <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+            Confirmar
+        </button>
+        
+    </p-footer>
+  
+</p-dialog>
+
+<p-dialog [(visible)]="dialogEditarAtirador" [draggable]="false" [closable]="false" [modal]="true"
+    [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '40vw'}">
+    
+    <p-header>
+        <b>Editar Atirador dados do atirador {{nomeAtirador}}</b>
+    </p-header>
+   
+    <div class="row">
+        <div class="col-6 p-20">
+            <p class="mt-1"><b>Nome Guerra: </b></p>
+            <input id="nomeGuerra" style="width: 100%;" autocomplete="off" pInputText type="text" [(ngModel)]="atualizarDados.nomeGuerra" maxlength="15">
+        </div>
+        <div class="col-6 p-20">
+            <p class="mt-1"><b>Pontos: </b></p>
+            <input id="pontos" style="width: 100%;" autocomplete="off" pInputText type="number" [(ngModel)]="atualizarDados.pontos">
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-6 p-20">
+            <p class="mt-1"><b>Quantidade guardas pretas: </b></p>
+            <input id="diaSemana" style="width: 100%;" autocomplete="off" pInputText type="number" [(ngModel)]="atualizarDados.quantidadeGuardaDiaSemana">
+        </div>
+        <div class="col-6 p-20">
+            <p class="mt-1"><b>Quantidade guardas vermelhas: </b></p>
+            <input id="fimSemana" style="width: 100%;" autocomplete="off" pInputText type="number" [(ngModel)]="atualizarDados.quantidadeGuardaFimSemana">
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-12 p-20">
+            <p-checkbox name="concluiuTg" binary="true" label="Concluiu com exito o Tiro de Guerra" [(ngModel)]="atualizarDados.concluiuTg"></p-checkbox>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 p-20">
+            <p-checkbox name="tiro" binary="true" label="Realizou o tiro" [(ngModel)]="atualizarDados.realizouTiro"></p-checkbox>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6 p-20" [ngStyle]="{'display': atualizarDados.destaque !== 'N' ? 'none' : ''}">
+            <p-checkbox name="tiro" binary="true" label="Ganhou algum destaque?" [(ngModel)]="ganhouDestaque"></p-checkbox>
+        </div>
+        <div class="col-6 p-20" [ngStyle]="{'display': atualizarDados.destaque === 'N' ? 'none' : ''}">
+            <p-checkbox name="tiro" binary="true" label="Alterar destaque?" [(ngModel)]="ganhouDestaque"></p-checkbox>
+        </div>
+        <div class="col-6 p-20">
+            <p-dropdown [options]="destaquesDisponiveis" [disabled]="!ganhouDestaque" [(ngModel)]="atualizarDados.destaque" placeholder="Destaques"></p-dropdown>
+        </div>
+    </div>
+    
+    <div class="row" [ngStyle]="{'display': ocupacao === 'C' ? '' : 'none'}">
+        <div class="col-12 p-20">
+            <p-checkbox name="tiro" binary="true" label="Concluiu a formação de cabo" [(ngModel)]="atualizarDados.cursoCabo"></p-checkbox>
+        </div>
+    </div>
+
+    <p-footer>
+       
+        <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogEditarAtirador()">
+            <i class="fas fa-fw fa-times"></i>
+            Cancelar
+        </button>
+        
+        <button class="btn btn-success m-0"
+            [disabled]="spinnerConfirmar"
+            (click)="editarDadosAtirador()">
+            <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+            Confirmar
+        </button>
+        
+    </p-footer>
+  
+</p-dialog>
+
+<p-dialog [(visible)]="dialogCadastrar" [draggable]="false" [closable]="false" [modal]="true"
+    [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}"> 
+
+    <p-header>
+        Cadastrar Novo Atirador
+    </p-header>
+   
+    <div class="row">
+        <div class="col-12">
+            <p-dropdown [options]="listaAlistados" [(ngModel)]="idAlistado" placeholder="Alistados"></p-dropdown>
+        </div>
+        <div class="col-12">
+            <p class="mt-1"><b>Nome Guerra: </b></p>
+            <input id="nomeGuerra" style="width: 100%;" autocomplete="off" pInputText type="text" [(ngModel)]="nomeGuerraNovoAtirador.nomeGuerra" maxlength="15">
+        </div>
+    </div>
+    
+    <p-footer>
+       
+        <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogCadastrarAtirador()">
+            <i class="fas fa-fw fa-times"></i>
+            Cancelar
+        </button>
+        
+        <button class="btn btn-success m-0" [disabled]="spinnerConfirmar" (click)="cadastrarNovoAtirador()">
+            <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+            Confirmar
+        </button>
+        
+    </p-footer>
+
+</p-dialog>
+
+<p-dialog [(visible)]="dialogPromocao" [draggable]="false" [closable]="false" [modal]="true"
+    [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
+    
+    <p-header>
+        <b>Promoção para aluno do curso</b>
+    </p-header>
+   
+    <div class="row">
+        <div class="col-12">
+            <p>O Atirador <b>{{ nomeAtirador }}</b> irá ingressar no curso de cabo?</p>
+        </div>
+    </div>
+    
+    <p-footer>
+       
+        <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogPromocao()">
+            <i class="fas fa-fw fa-times"></i>
+            Cancelar
+        </button>
+        
+        <button class="btn btn-success m-0"
+            [disabled]="spinnerConfirmar"
+            (click)="promoverAtiradorParaAluno()"
+            >
+            <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+            Confirmar
+        </button>
+        
+    </p-footer>
+  
+</p-dialog>
+
+<p-dialog [(visible)]="dialogInformacoes" [draggable]="false" [closable]="false" [modal]="true"
+    [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '40vw'}">
+    
+    <p-header>
+        <b>Informações do atirador {{informacoesAtirador.nome}}</b>
+    </p-header>
+   
+    <div class="row">
+        <div class="col-6">
+            <b>Nome de Guerra:</b> {{informacoesAtirador.nomeGuerra}}
+        </div>
+        <div class="col-6"> 
+            <b>CPF:</b> {{informacoesAtirador.cpf}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <b>Ocupação:</b> {{informacoesAtirador.ocupacao === 'A' ? 'Atirador' : informacoesAtirador.ocupacao === 'C' ? 'Aluno do Curso' : 'Monitor'}}
+        </div>
+        <div class="col-6">
+            <b>Pontos:</b> {{informacoesAtirador.pontos}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <b>Quantidade de guardas pretas:</b> {{informacoesAtirador.quantidadeGuardaDiaSemana}}
+        </div>
+        <div class="col-6"> 
+            <b>Quantidade de guardas pretas:</b> {{informacoesAtirador.quantidadeGuardaFimSemana}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <b>Destaques:</b> {{informacoesAtirador.destaque === 'F' ? 'Aptidão Física' : informacoesAtirador.destaque === 'C' ? 'Camaradagem' : informacoesAtirador.destaque === 'T' ? 'Melhor Tiro' : informacoesAtirador.destaque === 'A' ? 'Melhor do Ano' : 'Nenhum'}}
+        </div>
+    </div>
+    
+    <p-footer>
+       
+        <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogInformacoes()">
+            <i class="fas fa-fw fa-times"></i>
+            Fechar Consulta
+        </button>
+        
+    </p-footer>
+  
+</p-dialog>
+
+<p-dialog [(visible)]="dialogFATT" [draggable]="false" [closable]="false" [modal]="true"
+    [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
+    
+    <p-header>
+        Adicionar FATT ao atirador {{nomeAtirador}}
+    </p-header>
+   
+    <div class="row">
+        <div class="col-12 p-20">
+            <label class="mt-1" for="ocorrencia">
+                <b>Ocorrência:</b>
+                <span class="is-invalid text-danger" *ngIf="!ocorrenciaJustificativa.ocorrencia" pTooltip="Campo obrigatório">*</span>
+            </label>
+            <textarea name="ocorrencia" [(ngModel)]="ocorrenciaJustificativa.ocorrencia"
+                autocomplete="off" class="textAreaEmail m-0 mt-1"> </textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 p-20">
+            <p class="mt-1"><b>Justificativa: </b></p>
+            <textarea [(ngModel)]="ocorrenciaJustificativa.justificativa"
+                autocomplete="off" class="textAreaEmail m-0 mt-1"> </textarea>
+        </div>
+    </div>
+    
+    <p-footer>
+       
+        <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogFATT()">
+            <i class="fas fa-fw fa-times"></i>
+            Cancelar
+        </button>
+        
+        <button class="btn btn-success m-0"
+            [disabled]="spinnerConfirmar || !ocorrenciaJustificativa.ocorrencia"
+            (click)="adicionarFATTAoAtirador()">
+            <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+            Confirmar
+        </button>
+        
+    </p-footer>
+  
+</p-dialog>

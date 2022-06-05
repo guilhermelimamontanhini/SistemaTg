@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputMaskModule } from 'primeng/inputmask';
 import { ToastyModule } from 'ng2-toasty';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [AtiradorComponente],
@@ -26,6 +27,7 @@ import { ToastyModule } from 'ng2-toasty';
     InputTextModule,
     RadioButtonModule,
     InputMaskModule,
+    DropdownModule,
     ToastyModule.forRoot(),
   ],
   exports: [

@@ -1,1 +1,76 @@
-<p>desligados-componente works!</p>
+<br>
+
+<div class="container">
+    <div class="row"> 
+       <div class="col-12"> 
+           <div class="tituloPagina">Dispensados</div>
+                <p-table #tabelaDispensado [paginator]="true" [rows]="10" [responsive]="true" [columns]="colunasTabela" [value]="desligados" [globalFilterFields]="['nome']">
+ 
+                    <ng-template pTemplate="caption">
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12 text-right input-tabela">
+                                    <i class="fas fa-fw fa-search icone-busca mr-2"></i>
+                                    <input (input)="tabelaDispensado.filterGlobal($event.target.value, 'contains')"
+                                    class="form-control bloco m-0 largura-input-cabecalho btn-pesquisa mr-1 pr-0 "
+                                    style="display: inline !important;" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+ 
+                    <ng-template pTemplate="header" let-desligadosCabecalho>
+                        <tr>
+                            <th *ngFor="let desligados of desligadosCabecalho" [ngClass]="desligados.style" [pSortableColumn]="desligados.field">
+                                    <p-sortIcon [field]="desligados.field" *ngIf="desligados.field !== 'acao'"></p-sortIcon>
+                                    {{ desligados.header }}
+                            </th>
+                        </tr>
+                    </ng-template>
+ 
+                    <ng-template pTemplate="body" let-desligadosCorpo>
+                        <tr>
+                            <td class="texto-cabecalho">
+                                <span class="ui-column-title">
+                                    CPF
+                                </span>
+                                {{ desligadosCorpo.cpf }}
+                            </td>
+                            <td>
+                                <span class="ui-column-title">
+                                    Nome
+                                </span>
+                                {{ desligadosCorpo.nome }}
+                            </td>
+                            <td class="texto-cabecalho">
+                                <span class="ui-column-title">
+                                    Ação
+                                </span>
+                                <button type="button" class="btn btn-info text-white ml-2" [disabled]="desabilitarBotoes" pTooltip="Ver o motivo">
+                                    <i class="fas fa-fw fa-info"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger text-white ml-2" [disabled]="desabilitarBotoes" pTooltip="Deletar desligado">
+                                    <i class="fas fa-fw fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+ 
+                <ng-template pTemplate="emptymessage" let-desligadosVazio>
+                    <tr class="text-center">
+                        <td class="altura-spinner text-center mt-3 pt-4" [attr.colspan]="desligadosVazio.length" *ngIf="spinnerTabela">
+                            <p-progressSpinner [animationDuration]="'.75s'" strokeWidth="4" fill="#EEEEEE"></p-progressSpinner>
+                        </td>
+                        <td class="text-center" [attr.colspan]="desligadosVazio.length" *ngIf="!spinnerTabela">
+                            Nenhum Registro Encontrado
+                        </td>
+                    </tr>
+                </ng-template>
+ 
+            </p-table>
+       </div>
+    </div> 	
+</div>
+
+ <br>
+ <br>

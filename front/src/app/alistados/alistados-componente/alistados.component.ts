@@ -45,6 +45,11 @@ export class AlistadosComponente implements OnInit {
     this.listarTodosOsAlistados();
   }
 
+  /**
+   * 
+   * @description Método para listar todos os alistados
+   * @return {void}
+   */
   public listarTodosOsAlistados(): void {
     this.alistados = [];
     console.log(this.alistados);
@@ -154,9 +159,6 @@ export class AlistadosComponente implements OnInit {
 
     this.alistadoService.dispensarAlistado(this.idAlistado, this.mensagemMotivoDispensamento).subscribe(
       () => {
-        
-        // this.spinnerConfirmar = false;
-        // this.fecharDialogDispensarAlistado();
       }, 
       erro => {
         this.spinnerConfirmar = false;
@@ -169,6 +171,8 @@ export class AlistadosComponente implements OnInit {
           this.toasty.warning("Alistado não existe");
         } else if (erro.status == 422) {
           this.toasty.warning("Alguns registros estão repedidos")
+        } else {
+          this.toasty.error("Erro de conexão");
         }
         this.fecharDialogDispensarAlistado();
       }

@@ -1,8 +1,8 @@
 export class Alistados {
 
-    idAlistado: Number;
-    nome: String;
-    cpf: String;
-    refratario: String;
+    idAlistado: number;
+    nome: string;
+    cpf: string;
+    refratario: string;
 
 }
