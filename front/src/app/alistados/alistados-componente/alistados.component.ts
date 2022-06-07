@@ -52,7 +52,6 @@ export class AlistadosComponente implements OnInit {
    */
   public listarTodosOsAlistados(): void {
     this.alistados = [];
-    console.log(this.alistados);
     this.spinnerTabela = true;
     this.alistadoService.listarTodosAlistados().subscribe(
       (alistadosRetornados: Alistados[]) => {

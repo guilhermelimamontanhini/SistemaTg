@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ConexaoService {
 
-  public urlBack: string = 'http://localhost:8080'
+  public urlBack: string = 'http://localhost:8080';
 
   constructor() { }
 

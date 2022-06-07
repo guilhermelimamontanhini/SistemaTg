@@ -1,1 +1,204 @@
-<p>guardas works!</p>
+<br>
+
+<div class="container">
+    <div class="row"> 
+       <div class="col-12"> 
+            <p-table #algumaCoisa [paginator]="true" [rows]="10" [responsive]="true" [columns]="colunasTabela" [value]="guardaDoDia">
+ 
+               <ng-template pTemplate="caption">
+                   <div class=" m-0 mr-3">
+                     <div class="row">
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-6 text-left botao-tabela">
+                            <button class="btn btn-success" [disabled]="spinnerTabela || desabilitarBotoes" (click)="abrirDialogDeCadastrarGuarda()">
+                                <i class="fas fa-fw" [ngClass]="spinnerTabela ? 'fa-spin fa-circle-notch' : 'fa-plus'"></i>
+                                Novo integrante Guarda
+                            </button>
+                        </div>
+                        <div class="col-lg-6 col-sm-12 col-12 text-right input-tabela p-0 ">
+                            <i class="fas fa-fw fa-search icone-busca mr-2"></i>
+                            <input [(ngModel)]="dataEscrita"
+                               class="form-control bloco m-0 largura-input-cabecalho btn-pesquisa mr-1 pr-0 " 
+                               style="display: inline !important;" type="date" placeholder="Data..">
+
+                            <button class="btn btn-primary" style="margin-bottom: 6px;" [disabled]="spinnerTabela || desabilitarBotoes" pTooltip="Listar Guarda" (click)="listarGuardaDoDia(dataEscrita)">
+                                <i class="fas fa-fw" [ngClass]="spinnerTabela ? 'fa-spin fa-circle-notch' : 'fa-search'"></i>
+                            </button>
+                            <button class="btn btn-warning text-white ml-2"  style="margin-bottom: 6px;" [disabled]="spinnerTabela || desabilitarBotoes" (click)="limparFiltro()" pTooltip="Limpar filtros">
+                                <i class="fas fa-fw fa-broom"></i>
+                            </button>
+                        </div>
+                     </div>
+                 </div>
+              </ng-template>
+ 
+             <ng-template pTemplate="header" let-guardaCabecalho>
+                 <tr>
+                     <th *ngFor="let cabelho of guardaCabecalho" [ngClass]="cabelho.style" [pSortableColumn]="cabelho.field">
+                             <p-sortIcon [field]="cabelho.field" *ngIf="cabelho.field !== 'acao'"></p-sortIcon>
+                             {{ cabelho.header }}
+                     </th>
+                 </tr>
+             </ng-template>
+ 
+             <ng-template pTemplate="body" let-guardaCorpo>
+                 <tr>
+                    <td class="texto-cabecalho">
+                         <span class="ui-column-title">
+                             Data
+                         </span>
+                         {{ guardaCorpo.dataGuarda }}
+                    </td>
+                    <td>
+                        <span class="ui-column-title">
+                            Tipo
+                        </span>
+                        {{ guardaCorpo.tipoGuarda === 'F' ? "Fim de semana" : "Dia da semana" }}
+                   </td>
+                    <td class="texto-cabecalho">
+                         <span class="ui-column-title">
+                            Ação
+                         </span>
+                         <button class="btn btn-primary" pTooltip="Integrantes guarda" (click)="abrirDialogDeIntegrantesGuarda(guardaCorpo)">
+                            <i class="fas fa-fw fa-info"></i>
+                         </button>
+                    </td>
+                 </tr>
+             </ng-template>
+ 
+             <ng-template pTemplate="emptymessage" let-guardaVazia>
+                 <tr class="text-center">
+                     <td class="altura-spinner text-center mt-3 pt-4" [attr.colspan]="guardaVazia.length" *ngIf="spinnerTabela">
+                          <p-progressSpinner [animationDuration]="'.75s'" strokeWidth="4" fill="#EEEEEE"></p-progressSpinner>
+                     </td>
+                     <td class="text-center" [attr.colspan]="guardaVazia.length" *ngIf="!spinnerTabela">
+                          Nenhum Registro Encontrado
+                     </td>
+                  </tr>
+             </ng-template>
+ 
+         </p-table>
+       </div>
+    </div> 	
+ </div>
+
+ <p-dialog [(visible)]="dialogIntegrantes" [draggable]="false" [closable]="false" [modal]="true"
+    [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '70vw'}">
+    
+    <p-header>
+        Atiradores do pelotao <b>{{dataEscrita}}</b>
+    </p-header>
+   
+    <div class="container">
+        <div class="row"> 
+           <div class="col-12"> 
+                <p-table #tabelaAtiradores [paginator]="true" [rows]="5" [responsive]="true" [columns]="colunasTabelaAtirador" [value]="atiradores" [globalFilterFields]="['nomeGuerra']">
+        
+                <ng-template pTemplate="caption">
+                    <div class="container p-0">
+                        <div class="row">
+    
+                         </div>
+                     </div>
+                  </ng-template>
+     
+                 <ng-template pTemplate="header" let-atiradorCabecalho>
+                     <tr>
+                         <th *ngFor="let atirador of atiradorCabecalho" [ngClass]="atirador.style" [pSortableColumn]="atirador.field">
+                                 <p-sortIcon [field]="atirador.field" *ngIf="atirador.field !== 'acao'"></p-sortIcon>
+                                 {{ atirador.header }}
+                         </th>
+                     </tr>
+                 </ng-template>
+     
+                 <ng-template pTemplate="body" let-atiradorCorpo>
+                     <tr>
+                        <td class="texto-cabecalho">
+                             <span class="ui-column-title">
+                                 RA
+                             </span>
+                             {{ atiradorCorpo.ra }}
+                        </td>
+                        <td>
+                            <span class="ui-column-title">
+                                Nome de Guerra
+                            </span>
+                            {{ atiradorCorpo.nomeGuerra }}
+                       </td>
+                       <td class="texto-cabecalho">
+                            <span class="ui-column-title">
+                                Ocupação
+                            </span>
+                            {{ atiradorCorpo.ocupacao === 'A' ? "Atirador" : atiradorCorpo.ocupacao === 'C' ? "Aluno do Curso" : "Monitor" }}
+                        </td>
+                     </tr>
+                 </ng-template>
+     
+                 <ng-template pTemplate="emptymessage" let-atiradorVazio>
+                     <tr class="text-center">
+                         <td class="altura-spinner text-center mt-3 pt-4" [attr.colspan]="atiradorVazio.length" *ngIf="spinnerTabela">
+                              <p-progressSpinner [animationDuration]="'.75s'" strokeWidth="4" fill="#EEEEEE"></p-progressSpinner>
+                         </td>
+                         <td class="text-center" [attr.colspan]="atiradorVazio.length" *ngIf="!spinnerTabela">
+                              Nenhum Registro Encontrado
+                         </td>
+                      </tr>
+                 </ng-template>
+     
+             </p-table>
+           </div>
+        </div> 	
+     </div>
+    
+    <p-footer>
+       
+        <button class="btn btn-danger" (click)="fecharDialogDeIntegrantesGuarda()">
+            <i class="fas fa-fw fa-times"></i>
+            Fechar consulta
+        </button>
+        
+    </p-footer>
+  
+</p-dialog>
+
+<p-dialog [(visible)]="dialogCadastrarGuarda" [draggable]="false" [closable]="false" [modal]="true"
+    [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
+    
+    <p-header>
+        Cadastrar novo integrante
+    </p-header>
+   
+    <div class="row">
+        <div class="col-12">
+            <p-dropdown [options]="listaAtiradores" [(ngModel)]="raAtirador" placeholder="Atiradores"></p-dropdown>
+        </div>
+        <div class="col-12 mt-2">
+            <input [(ngModel)]="dataEscrita"
+                class="form-control bloco m-0 largura-input-cabecalho btn-pesquisa mr-1 pr-0 " 
+                style="display: inline !important;" type="date" placeholder="Data..">
+        </div>
+        <div class="col-12 mt-2">
+            <span class="mr-1">Tipo da Guarda: </span>
+            Preta
+            <p-radioButton name="guardaDiaSemana" value="D" [(ngModel)]="tipoGuarda"></p-radioButton>
+            Vermelha
+            <p-radioButton name="guardaFimSemana" value="F" [(ngModel)]="tipoGuarda"></p-radioButton>
+        </div>
+    </div>
+    
+    <p-footer>
+       
+        <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogCadastrarGuarda()">
+            <i class="fas fa-fw fa-times"></i>
+            Cancelar
+        </button>
+        
+        <button class="btn btn-success m-0"
+            [disabled]="spinnerConfirmar"
+            (click)="cadastrarGuarda()">
+            <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+            Confirmar
+        </button>
+        
+    </p-footer>
+  
+</p-dialog>

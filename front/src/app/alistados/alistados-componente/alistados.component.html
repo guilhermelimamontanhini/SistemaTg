@@ -111,7 +111,6 @@
                 <b>CPF:</b>
                 <span class="is-invalid text-danger" *ngIf="!cpfAlistadoCadastrarEditar" pTooltip="Campo obrigatório">*</span>
             </label>
-            <!-- <p-inputMask mask="999.999.999-99" [(ngModel)]="cpfAlistadoCadastrarEditar" placeholder="999.999.999-99"></p-inputMask> -->
             <input id="cpf" style="width: 100%;" autocomplete="off" pInputText type="text" 
                 [(ngModel)]="cpfAlistadoCadastrarEditar" placeholder="000.000.000-00" ui-br-cpf-mask maxlength="15">
         </div>

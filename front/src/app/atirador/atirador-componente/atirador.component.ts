@@ -23,8 +23,8 @@ export class AtiradorComponente implements OnInit {
   public atualizarDados: AtualizarDadosAtirador = new AtualizarDadosAtirador();
   public ocorrenciaJustificativa: OcorrenciaJustificativa = new OcorrenciaJustificativa();
   public colunasTabela: any[];
-  public destaquesDisponiveis: SelectItem[];
-  public listaAlistados: SelectItem[];
+  public destaquesDisponiveis: SelectItem[] = [];
+  public listaAlistados: SelectItem[] = [];
   public mensagemMotivoDesligamento: MensagemMotivos = new MensagemMotivos;
 
   public spinnerTabela: boolean;
@@ -84,7 +84,6 @@ export class AtiradorComponente implements OnInit {
     this.atiradorService.listarTodosAlistados().subscribe(
       (atiradoresRetornados: Atirador[]) => {
           this.atiradores = atiradoresRetornados;
-          console.log(this.atiradores);
           this.spinnerTabela = false;
       }, 
       (erro) => {
@@ -236,10 +235,11 @@ export class AtiradorComponente implements OnInit {
     this.alistadoService.listarTodosAlistados().subscribe(
       (alistadosRetornados: Alistados[]) => {
           alistadosRetornados.forEach(lista => {
-            this.listaAlistados = [
+            this.listaAlistados.push(
               {label: lista.nome, value: lista.idAlistado}
-            ];
+            );
           });
+          console.log(this.listaAlistados);
           this.spinnerTabela = false;
       }, (erro) => {
         this.spinnerTabela = false;

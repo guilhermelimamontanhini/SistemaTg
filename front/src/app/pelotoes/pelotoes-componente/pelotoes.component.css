@@ -1,0 +1,62 @@
+.btn-pesquisa {
+    width: 250px;
+    display: inline !important;
+  }
+
+.texto-cabecalho{
+    text-align: center !important;
+}
+
+@media(max-width: 767px){
+    .input-tabela{
+        text-align: center !important;
+        margin-top: 10px !important;
+    }
+}
+
+@media(max-width: 640px) {
+    td {
+        border-top: 1px solid #c8c8c8 !important;
+        border-left: 1px solid #c8c8c8 !important;
+        border-right: 1px solid #c8c8c8 !important;
+    }
+}
+
+@media(max-width:386px){
+    .largura-input-cabecalho{
+        width: 200px !important;
+    }
+    
+}
+
+.coluna-numero {
+    width: 10%;
+}
+
+.coluna-nome {
+    width: auto;
+}
+
+.coluna-acao {
+    width: 10%;
+}
+
+.coluna-ra {
+    width: 10%;
+}
+
+.coluna-cpf {
+   width: 15%;
+}
+
+.coluna-nome {
+    width: auto;
+}
+
+.coluna-guerra {
+   width: 20%;
+}
+
+.coluna-ocupacao {
+   width: 15%;
+}
