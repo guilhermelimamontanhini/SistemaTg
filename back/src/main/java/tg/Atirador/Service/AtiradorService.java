@@ -64,6 +64,7 @@ public class AtiradorService {
 					Atirador novoAtirador = new Atirador(alistado.get().getNome(), alistado.get().getCpf(), dadosNovoAtirador);
 					this.atiradorRepository.save(novoAtirador);
 					this.alistadoRepository.delete(alistado.get());
+					mensagem = "Atirador cadastrado com sucesso";
 					valido = true;
 				} catch(Exception e) {
 					e.printStackTrace();
@@ -198,7 +199,10 @@ public class AtiradorService {
 						.body(mensagem);
 			}
 		} else {
-			
+			mensagem = "Atirador não existe.";
+			return ResponseEntity
+					.status(HttpStatus.NOT_FOUND)
+					.body(mensagem);
 		}
 		
 		return ResponseEntity

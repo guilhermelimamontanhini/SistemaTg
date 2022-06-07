@@ -18,7 +18,6 @@ import tg.Atirador.FORM.AdicionarPontuacaoGuarda;
 import tg.Atirador.Model.Atirador;
 import tg.Atirador.Repository.AtiradorRepository;
 import tg.Guardas.DTO.GuardasDTO;
-import tg.Guardas.FORM.DadosDaGuarda;
 import tg.Guardas.FORM.DataGuarda;
 import tg.Guardas.FORM.NovaGuarda;
 import tg.Guardas.Model.Guardas;
@@ -57,7 +56,7 @@ public class GuardasService {
 			mensagem = "Integrante da guarda adicionado cadastrado com sucesso";
 		} catch(Exception e) {
 			e.printStackTrace();
-			mensagem = "Erro ao cadastrar alistado.";
+			mensagem = "Erro ao cadastrar nova guarda.";
 			return ResponseEntity
 					.status(HttpStatus.BAD_REQUEST)
 					.body(mensagem);

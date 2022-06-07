@@ -3,7 +3,6 @@ package tg.Guardas.DTO;
 import java.util.List;
 
 import tg.Atirador.DTO.AtiradoresGuardaDTO;
-import tg.Guardas.FORM.DadosDaGuarda;
 import tg.Guardas.FORM.NovaGuarda;
 
 public class GuardasDTO {

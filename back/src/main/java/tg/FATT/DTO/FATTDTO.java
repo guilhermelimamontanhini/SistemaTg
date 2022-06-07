@@ -7,7 +7,7 @@ import tg.FATT.Model.FATT;
 
 public class FATTDTO {
 	
-private Long idFatt;
+	private Long idFatt;
 	
 	private Long raAtirador;
 

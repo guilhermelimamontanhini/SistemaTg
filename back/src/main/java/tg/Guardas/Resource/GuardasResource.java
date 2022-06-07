@@ -42,7 +42,7 @@ public class GuardasResource {
 	 * @param <DataGuarda> data
 	 * @return ResponseEntity<GuardasDTO>
 	 */
-	@GetMapping
+	@PostMapping
 	public ResponseEntity<GuardasDTO> listarGuardaDoDia(@RequestBody @Valid DataGuarda data) {
 		return this.guardasServices.listarGuardaDoDia(data);
 	}

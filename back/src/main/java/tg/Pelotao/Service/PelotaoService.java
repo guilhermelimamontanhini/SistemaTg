@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
 import tg.Atirador.Model.Atirador;
 import tg.Atirador.Repository.AtiradorRepository;
@@ -62,7 +63,7 @@ public class PelotaoService {
 					valido = false;
 					mensagem = "Já existe o maximo de pelotões cadastrados";
 				} 
-			  else {
+				else {
 					Pelotao novoPelotaoCadastraddo = new Pelotao(novoPelotao);
 					this.pelotaoRepository.save(novoPelotaoCadastraddo);
 					this.cadastrarAtiradoresNosPelotoes();
@@ -124,6 +125,10 @@ public class PelotaoService {
 			List<Atirador> atiradores = this.atiradorRepository.findAllByNumeroPelotaoOrderByNomeAsc(cont);
 			PelotaoDTO registro = new PelotaoDTO(pelotao,atiradores);
 			listaPelotoesIntegrantes.add(registro);
+		}
+		
+		if(listaPelotoesIntegrantes.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Não existem pelotoes cadastrados!");
 		}
 		
 		return ResponseEntity.ok(listaPelotoesIntegrantes); 

@@ -1,14 +1,5 @@
 package tg.Guardas.FORM;
 
-import java.util.Optional;
-
-import javax.validation.Valid;
-
-import tg.Atirador.Model.Atirador;
-import tg.Atirador.Repository.AtiradorRepository;
-import tg.Guardas.Model.Guardas;
-import tg.Guardas.Repository.GuardasRepository;
-
 public class DadosDaGuarda {
 	
 	
