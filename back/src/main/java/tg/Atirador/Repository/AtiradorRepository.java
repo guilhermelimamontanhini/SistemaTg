@@ -13,6 +13,7 @@ public interface AtiradorRepository extends JpaRepository<Atirador, Long> {
 	Optional<Atirador> findByNomeGuerra(String nomeGuerra);
 	List<Atirador> findAllByOrderByNomeAsc();
 	List<Atirador> findAllByNumeroPelotaoOrderByNomeAsc(Integer numeroPelotao);
-	
+	List<Atirador> findAllByOcupacaoOrderByNomeAsc(String ocupacao);
+	List<Atirador> findAllByRealizouTiroOrderByNomeAsc(Boolean realizouTiro);
 	               
 }

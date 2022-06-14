@@ -18,8 +18,8 @@ import tg.Alistados.FORM.AlistadoFORM;
 import tg.Alistados.Model.Alistado;
 import tg.Alistados.Repository.AlistadoRepository;
 import tg.Auxiliares.Motivo.MensagemMotivos;
-import tg.Despensados.Model.Dispensado;
-import tg.Despensados.Repository.DispensadoRepository;
+import tg.Despensados.Model.Despensado;
+import tg.Despensados.Repository.DespensadoRepository;
 
 @Service
 public class AlistadoService {
@@ -28,7 +28,7 @@ public class AlistadoService {
 	private AlistadoRepository alistadoRepository;
 	
 	@Autowired
-	private DispensadoRepository dispensadoRepository;
+	private DespensadoRepository dispensadoRepository;
 	
 	
 	/**
@@ -115,7 +115,7 @@ public class AlistadoService {
 		
 		if(alistado.isPresent()) {
 			try {
-				Dispensado dispensado = new Dispensado(alistado.get().getNome(), alistado.get().getCpf(), mensagemMotivos.getMotivo());
+				Despensado dispensado = new Despensado(alistado.get().getNome(), alistado.get().getCpf(), mensagemMotivos.getMotivo());
 				this.dispensadoRepository.save(dispensado);
 				this.alistadoRepository.delete(alistado.get());
 				mensagem = "Alistado despensado com sucesso";

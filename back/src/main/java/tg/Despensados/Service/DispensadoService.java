@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.server.ResponseStatusException;
 
 import tg.Despensados.DTO.DispensadoDTO;
-import tg.Despensados.Model.Dispensado;
-import tg.Despensados.Repository.DispensadoRepository;
+import tg.Despensados.Model.Despensado;
+import tg.Despensados.Repository.DespensadoRepository;
 
 @Service
 public class DispensadoService {
 	
 	@Autowired
-	private DispensadoRepository dispensadoRepository;
+	private DespensadoRepository dispensadoRepository;
 	
 	/**
 	 * 
@@ -27,7 +27,7 @@ public class DispensadoService {
 	 * */
 	public ResponseEntity<List<DispensadoDTO>> listarDispensados() {
 		
-	    List<Dispensado> dispensado = this.dispensadoRepository.findAll();
+	    List<Despensado> dispensado = this.dispensadoRepository.findAll();
 	    
 		if(dispensado.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Não existem dispensados cadastradas!");
@@ -45,7 +45,7 @@ public class DispensadoService {
 	public ResponseEntity<String> deletarDispensado(@PathVariable Long id) {
 		
 		String mensagem = "";
-		Optional<Dispensado> dispensado = this.dispensadoRepository.findByIdDispensado(id);
+		Optional<Despensado> dispensado = this.dispensadoRepository.findByIdDispensado(id);
 		
 		if(dispensado.isPresent()) {
 			try {

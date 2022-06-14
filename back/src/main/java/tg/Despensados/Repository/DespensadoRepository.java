@@ -1,13 +1,15 @@
 package tg.Despensados.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import tg.Despensados.Model.Dispensado;
+import tg.Despensados.Model.Despensado;
 
-public interface DispensadoRepository extends JpaRepository<Dispensado, Long> {
+public interface DespensadoRepository extends JpaRepository<Despensado, Long> {
 	
-	Optional<Dispensado> findByIdDispensado(Long id);
+	Optional<Despensado> findByIdDispensado(Long id);
+	List<Despensado> findAllByOrderByNomeAsc();
 
 }

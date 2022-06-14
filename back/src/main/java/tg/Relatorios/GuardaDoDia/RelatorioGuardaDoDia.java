@@ -1,30 +1,39 @@
-package tg.Guardas.Service;
+package tg.Relatorios.GuardaDoDia;
 
+import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import tg.Atirador.DTO.AtiradoresGuardaDTO;
-import tg.Atirador.FORM.AdicionarPontuacaoGuarda;
 import tg.Atirador.Model.Atirador;
 import tg.Atirador.Repository.AtiradorRepository;
+import tg.Auxiliares.RelatorioEmPDF.RelatorioEmPDF;
 import tg.Guardas.DTO.GuardasDTO;
 import tg.Guardas.FORM.DataGuarda;
 import tg.Guardas.FORM.NovaGuarda;
 import tg.Guardas.Model.Guardas;
 import tg.Guardas.Repository.GuardasRepository;
 
+@RestController
+@RequestMapping("/todosIntegrantesGuarda")
 @Service
-public class GuardasService {
+public class RelatorioGuardaDoDia {
 	
 	@Autowired
 	private GuardasRepository guardasRepository;
@@ -32,49 +41,11 @@ public class GuardasService {
 	@Autowired
 	private AtiradorRepository atiradorRepository;
 	
-	/**
-	 * 
-	 * @description Método para adicionar integrantes na guarda
-	 * @param <Long> ra
-	 * @param <NovaGuarda> novaGuarda
-	 * @return ResponseEntity<String>
-	 */
-	public ResponseEntity<String> adicionarIntegranteGuarda(@PathVariable Long ra, 
-			@RequestBody @Valid NovaGuarda novaGuarda) {
+	@PostMapping
+	public ResponseEntity<byte[]> gerarRelatorioTodosAlistados(@RequestBody @Valid DataGuarda data) {
 		
-		String mensagem = "";
-		boolean valido = false;
-		
-		AdicionarPontuacaoGuarda adicionarPontuacaoGuarda = new AdicionarPontuacaoGuarda();
-		Atirador atirador = adicionarPontuacaoGuarda.atualizarPontosDaGuardaAtirador(ra,novaGuarda.getTipoGuarda(),
-				atiradorRepository);
-		
-		try {
-			Guardas adicionarNovaGuarda = new Guardas(novaGuarda,atirador.getNomeGuerra());
-			this.guardasRepository.save(adicionarNovaGuarda);
-			valido = true;
-			mensagem = "Integrante da guarda adicionado cadastrado com sucesso";
-		} catch(Exception e) {
-			e.printStackTrace();
-			mensagem = "Erro ao cadastrar nova guarda.";
-			return ResponseEntity
-					.status(HttpStatus.BAD_REQUEST)
-					.body(mensagem);
-		}
-		
-		return ResponseEntity
-				.status(valido ? HttpStatus.CREATED : HttpStatus.UNPROCESSABLE_ENTITY)
-				.body(mensagem);
-		
-	}
-	
-	/**
-	 * 
-	 * @description Método para listar as guardas por dia 
-	 * @param <DataGuarda> data
-	 * @return ResponseEntity<GuardasDTO>
-	 */
-	public ResponseEntity<GuardasDTO> listarGuardaDoDia(@RequestBody @Valid DataGuarda data) {
+		ClassLoader chamarArquivo = getClass().getClassLoader();
+		File nomeArquivo = new File(chamarArquivo.getResource("Relatorios/IntegrantesGuarda.jrxml").getFile());
 		
 		List<Guardas> guardaDia = this.guardasRepository.findAllByDataGuarda(data.getDataGuarda());
 		List<AtiradoresGuardaDTO> todosOsIntegrantes = new ArrayList<>();
@@ -90,9 +61,24 @@ public class GuardasService {
 		}
 		
 		GuardasDTO guardaIntegrantes = new GuardasDTO(dataTipoGuarda,todosOsIntegrantes);
-		return ResponseEntity.ok(guardaIntegrantes); 
+		List<AtiradoresGuardaDTO> atiradoresGuarda = new ArrayList<>();
+		
+		atiradoresGuarda = guardaIntegrantes.getListaIntegrantes();
+
+		String BRLformato = "dd/MM/yyyy HH:mm";
+		DateTimeFormatter formatoDataAtual = DateTimeFormatter.ofPattern(BRLformato);
+		
+		JRBeanCollectionDataSource guarda = new JRBeanCollectionDataSource(atiradoresGuarda);
+		
+		Map<String, Object> parametros = new HashMap<String,Object>();
+		
+		parametros.put("dataGuarda", data.getDataGuarda());
+		parametros.put("atiradoresGuarda", guarda);
+		parametros.put("dataAtual", LocalDateTime.now().format(formatoDataAtual));
+		
+		byte[] bytes = RelatorioEmPDF.geraRelatorioEmPDF(nomeArquivo.getAbsolutePath(), parametros);
+		return RelatorioEmPDF.retornaResponseEntityRelatorio(bytes);
 		
 	}
-	
 
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e85f50ab-22be-48c8-9910-efdf9272933a">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TodosDesligados" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ebe65b02-8f70-45d1-b793-6b1bc12c9e91">
 	<style name="Table_TH" mode="Opaque" backcolor="#556B2F">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -28,27 +28,16 @@
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<subDataset name="todosatiradores" uuid="04b91e20-f0d3-45dd-aa5b-a6b5a8b0bb5e">
-		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<subDataset name="TabelaDesligados" uuid="890557f9-c57d-4626-89bb-bb1b4aa95a68">
 		<queryString>
 			<![CDATA[]]>
 		</queryString>
-		<field name="nome" class="java.lang.String">
-			<fieldDescription><![CDATA[nome]]></fieldDescription>
-		</field>
-		<field name="cpf" class="java.lang.String">
-			<fieldDescription><![CDATA[cpf]]></fieldDescription>
-		</field>
-		<field name="nomeguerra" class="java.lang.String">
-			<fieldDescription><![CDATA[nomeGuerra]]></fieldDescription>
-		</field>
+		<field name="cpf" class="java.lang.String"/>
+		<field name="nome" class="java.lang.String"/>
+		<field name="motivo" class="java.lang.String"/>
 	</subDataset>
-	<parameter name="atiradores" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource">
-		<parameterDescription><![CDATA[Variável que armazena todos os atiradores]]></parameterDescription>
-	</parameter>
-	<parameter name="dataAtual" class="java.lang.String">
-		<parameterDescription><![CDATA[Data da geração do relatorio]]></parameterDescription>
-	</parameter>
+	<parameter name="desligados" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="dataAtual" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -56,69 +45,49 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="92" splitType="Stretch"/>
+		<band height="79" splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="54" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<staticText>
-				<reportElement x="160" y="10" width="237" height="30" uuid="c0b7a395-9ea2-4f0b-8efa-31ed5b09c5eb"/>
+				<reportElement x="160" y="10" width="237" height="30" uuid="40d1cf5f-004f-4c3f-a56b-b7a47eb0dbc1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="20"/>
 				</textElement>
-				<text><![CDATA[Todos os Atiradores]]></text>
+				<text><![CDATA[Todos os Desligados]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="110" y="20" width="323" height="30" uuid="35874109-a4a6-4bff-a576-9c0a3321f013"/>
+				<reportElement x="102" y="20" width="360" height="30" uuid="5017a0d2-8276-4c95-a705-2530e47e4300"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<text><![CDATA[Todos os atiradores que estaram prestando o TG]]></text>
+				<text><![CDATA[Todos os atiradores que foram desligados]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="254" splitType="Stretch">
+		<band height="242" splitType="Stretch">
 			<componentElement>
-				<reportElement x="68" y="27" width="420" height="223" uuid="160b7fde-8615-4a8b-beac-0adb12665b5a">
+				<reportElement x="72" y="30" width="420" height="200" uuid="f22cd761-80fa-4267-973a-0e439e17b0f3">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
 					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="todosatiradores" uuid="af284106-9874-45e2-b5f2-e19d6c44cb71">
-						<dataSourceExpression><![CDATA[$P{atiradores}]]></dataSourceExpression>
+					<datasetRun subDataset="TabelaDesligados" uuid="cced0092-3d00-4c49-ad61-7e7bccf9755a">
+						<dataSourceExpression><![CDATA[$P{desligados}]]></dataSourceExpression>
 					</datasetRun>
-					<jr:column width="140" uuid="b28faf1d-f32a-4de9-ba0b-f1a4cf664761">
+					<jr:column width="140" uuid="8eef380d-49b3-4e5b-931c-84e919d0a6e7">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
 						<jr:tableHeader style="Table_TH" height="30" rowSpan="1">
 							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							<staticText>
-								<reportElement x="0" y="0" width="140" height="30" forecolor="#FFFFFF" uuid="1107ecba-c512-49ce-98df-16acafc87289"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Arial"/>
-								</textElement>
-								<text><![CDATA[Nome]]></text>
-							</staticText>
-						</jr:tableHeader>
-						<jr:detailCell style="Table_TD" height="30">
-							<textField>
-								<reportElement x="0" y="0" width="140" height="30" uuid="a930aa1b-5f02-41bf-8831-c198d5d3a904"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="140" uuid="f2ec7f0d-8531-48f5-90b1-0072510e89ec">
-						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
-						<jr:tableHeader style="Table_TH" height="30" rowSpan="1">
-							<property name="com.jaspersoft.studio.unit.width" value="px"/>
-							<staticText>
-								<reportElement x="0" y="0" width="140" height="30" forecolor="#FFFFFF" uuid="9da6cf28-bb55-49e9-b22b-6577b3ee327f"/>
+								<reportElement x="0" y="0" width="140" height="30" forecolor="#FFFFFF" uuid="4fa0989f-96c6-4b66-a02d-35eea836d84f"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial"/>
 								</textElement>
@@ -127,7 +96,7 @@
 						</jr:tableHeader>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="140" height="30" uuid="9e495b5f-0ada-4e6a-b11c-8d8b1bf29f7c"/>
+								<reportElement x="0" y="0" width="140" height="30" uuid="12b57274-0a3e-4200-9f25-c2a997320118"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial"/>
 								</textElement>
@@ -135,23 +104,42 @@
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="140" uuid="378a7f08-8799-4071-95e3-1f14f2539f24">
-						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+					<jr:column width="140" uuid="2fb21db1-9c51-477d-a551-9b5134ce522d">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
 						<jr:tableHeader style="Table_TH" height="30" rowSpan="1">
-							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							<staticText>
-								<reportElement x="0" y="0" width="140" height="30" forecolor="#FFFFFF" uuid="9f12b8db-47ec-4aa5-ac31-17d0a2084672"/>
+								<reportElement x="0" y="0" width="140" height="30" forecolor="#FFFFFF" uuid="505cb304-5e24-4182-abad-3980a6aaebfb"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Arial"/>
 								</textElement>
-								<text><![CDATA[Nome de Guerra]]></text>
+								<text><![CDATA[Nome]]></text>
 							</staticText>
 						</jr:tableHeader>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="140" height="30" uuid="4ff9d472-0cfe-4199-95a7-8f3be62ffba1"/>
+								<reportElement x="0" y="0" width="140" height="30" uuid="c9895094-25d1-48c7-b83d-aefd262378da"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{nomeguerra}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="140" uuid="5d91b92b-209d-4395-adce-7403a70b7e93">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:tableHeader style="Table_TH" height="30" rowSpan="1">
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							<staticText>
+								<reportElement x="0" y="0" width="140" height="30" forecolor="#FFFFFF" uuid="60ab98a1-017f-4d3a-8d55-e9562d3495d6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<text><![CDATA[Motivo]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="140" height="30" uuid="d8e5144a-e4c4-4656-9d2e-9a77227b6c61"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{motivo}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -165,12 +153,12 @@
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<textField>
-				<reportElement x="370" y="20" width="100" height="30" uuid="e1eeb3a8-3312-420c-84e0-b3815c7690a5"/>
+				<reportElement x="370" y="20" width="100" height="30" uuid="5faa70a3-c81e-4701-87f8-c4084bf9af7e"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="470" y="20" width="100" height="30" uuid="c348653d-6cb5-48b4-b592-43cb01dd2f0b"/>
+				<reportElement x="470" y="20" width="100" height="30" uuid="30f7f895-cf7a-4707-925b-9fbd01676e8e"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
@@ -179,20 +167,20 @@
 	<lastPageFooter>
 		<band height="80">
 			<textField>
-				<reportElement x="180" y="10" width="190" height="30" uuid="49515a7f-3ce5-460a-baff-990d1e0c4584"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<reportElement x="180" y="10" width="190" height="30" uuid="f246a233-5c1b-42fa-9905-365b97c0e2d8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="16"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Gerado em "  + $P{dataAtual}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="50" width="100" height="30" uuid="812d1070-125a-4995-894f-d1d45b9362ef"/>
-				<textElement textAlignment="Justified"/>
+				<reportElement x="370" y="50" width="100" height="30" uuid="c511bd82-88ba-4062-ac1d-ad05567952dd"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="470" y="50" width="100" height="30" uuid="230db499-57e8-4b19-8829-3deb9d69baf6"/>
-				<textElement textAlignment="Justified"/>
+				<reportElement x="470" y="50" width="100" height="30" uuid="1eaf4bc7-2c6c-4073-9686-05479d518251"/>
+				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
