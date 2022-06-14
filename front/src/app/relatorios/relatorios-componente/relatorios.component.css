@@ -1,0 +1,9 @@
+.tituloPagina {
+    text-align: center;
+    font-size: 30px;
+}
+
+.btn-pesquisa {
+    width: 250px;
+    display: inline !important;
+  }

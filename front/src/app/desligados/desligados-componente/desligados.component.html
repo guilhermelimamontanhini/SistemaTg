@@ -46,10 +46,10 @@
                                 <span class="ui-column-title">
                                     Ação
                                 </span>
-                                <button type="button" class="btn btn-info text-white ml-2" [disabled]="desabilitarBotoes" pTooltip="Ver o motivo">
+                                <button type="button" class="btn btn-info text-white ml-2" [disabled]="desabilitarBotoes" pTooltip="Ver o motivo" (click)="abrirDialogMotivo(desligadosCorpo.motivo)">
                                     <i class="fas fa-fw fa-info"></i>
                                 </button>
-                                <button type="button" class="btn btn-danger text-white ml-2" [disabled]="desabilitarBotoes" pTooltip="Deletar desligado">
+                                <button type="button" class="btn btn-danger text-white ml-2" [disabled]="desabilitarBotoes" pTooltip="Deletar desligado" (click)="abrirDialogDeletar(desligadosCorpo)">
                                     <i class="fas fa-fw fa-trash"></i>
                                 </button>
                             </td>
@@ -74,3 +74,58 @@
 
  <br>
  <br>
+ <p-dialog [(visible)]="dialogMotivo" [draggable]="false" [closable]="false" [modal]="true"
+ [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '30vw'}">
+ 
+ <p-header>
+     <b>Motivo do desligamento</b>
+ </p-header>
+
+ <div class="row">
+     <div class="col-12 p-20">
+         <textarea [(ngModel)]="motivo"
+             autocomplete="off" [disabled]="true" class="textAreaMotivo m-0 mt-1"> </textarea>
+     </div>
+ </div>
+ 
+ <p-footer>
+    
+     <button class="btn btn-danger" (click)="fecharDialogMotivo()">
+         <i class="fas fa-fw fa-times"></i>
+         Fechar
+     </button>
+     
+ </p-footer>
+
+</p-dialog>
+
+<p-dialog [(visible)]="dialogDeletar" [draggable]="false" [closable]="false" [modal]="true"
+ [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
+ 
+ <p-header>
+     <b>Deseja excluir Desligado</b>
+ </p-header>
+
+ <div class="row">
+     <div class="col-12 p-10">
+         Deseja excluir <b>{{desligadoDeletado.nome}}</b> permanentemente da base dados?
+     </div>
+ </div>
+
+ <p-footer>
+    
+     <button [disabled]="desabilitarBotoes" class="btn btn-danger" (click)="fecharDialogDeletar()">
+         <i class="fas fa-fw fa-times"></i>
+         Cancelar
+     </button>
+     
+     <button class="btn btn-success m-0"
+         [disabled]="desabilitarBotoes"
+         (click)="deletarDesligado()">
+         <i class="fas fa-fw" [ngClass]="desabilitarBotoes ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+         Confirmar
+     </button>
+     
+ </p-footer>
+
+</p-dialog>

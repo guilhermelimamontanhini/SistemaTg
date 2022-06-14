@@ -1,1 +1,189 @@
-<p>relatorios-componente works!</p>
+<br>
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="tituloPagina">Relatorios</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3" style="text-align: center;">
+            <button class="btn btn-primary"
+                style="width: 100%;"
+                [disabled]="desabilitarBotoes"
+                (click)="gerarRelatorioTodosAtiradores()">
+                <i class="fas fa-fw" [ngClass]="spinnerConfirmarTodosAtiradores ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+                Todos Atiradores
+            </button>
+        </div>
+        <div class="col-lg-3" style="text-align: center;">
+            <button class="btn btn-primary"
+                style="width: 100%;"
+                [disabled]="desabilitarBotoes"
+                (click)="gerarRelatorioPontosAtirador()">
+                <i class="fas fa-fw" [ngClass]="spinnerConfirmarPontos ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+                Pontos dos Atiradores
+            </button>
+        </div>
+        <div class="col-lg-3" style="text-align: center;">
+            <button class="btn btn-primary"
+                style="width: 100%;"
+                [disabled]="desabilitarBotoes"
+                (click)="gerarRelatorioAlistadosRefratarios(1)"
+                >
+                <i class="fas fa-fw" [ngClass]="spinnerConfirmarAlistados ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+                Alistados
+            </button>
+        </div>
+        <div class="col-lg-3" style="text-align: center;">
+            <button class="btn btn-primary"
+                style="width: 100%;"
+                [disabled]="desabilitarBotoes"
+                (click)="gerarRelatorioDespensados()"
+                >
+                <i class="fas fa-fw" [ngClass]="spinnerConfirmarDespensados ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+                Despensados
+            </button>
+        </div>
+        
+    </div>
+    <div class="row mt-2">
+        <div class="col-lg-3" style="text-align: center;">
+            <button class="btn btn-primary"
+                style="width: 100%;"
+                [disabled]="desabilitarBotoes"
+                (click)="gerarRelatorioDesligados()"
+                >
+                <i class="fas fa-fw" [ngClass]="spinnerConfirmarDesligados ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+               Desligados
+            </button>
+        </div>
+        <div class="col-lg-3" style="text-align: center;">
+            <button class="btn btn-primary"
+                style="width: 100%;"
+                [disabled]="desabilitarBotoes"
+                (click)="gerarRelatorioAlistadosRefratarios(0)"
+                >
+                <i class="fas fa-fw" [ngClass]="spinnerConfirmarRefratarios ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+                Refratarios
+            </button>
+        </div>
+        <div class="col-lg-3" style="text-align: center;">
+            <button class="btn btn-primary"
+                style="width: 100%;"
+                [disabled]="desabilitarBotoes"
+                (click)="gerarRelatorioAtiraram()"
+                >
+                <i class="fas fa-fw" [ngClass]="spinnerConfirmarAtiraram ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+                Atiradores que Atiraram
+            </button>
+        </div>
+        <div class="col-lg-3" style="text-align: center;">
+            <button class="btn btn-primary"
+                style="width: 100%;"
+                [disabled]="desabilitarBotoes"
+                (click)="gerarRelatorioAlunos()"
+                >
+                <i class="fas fa-fw" [ngClass]="spinnerConfirmarAlunos ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+                Alunos do Curso
+            </button>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-lg-3" style="text-align: center;">
+            <button class="btn btn-primary"
+                style="width: 100%;"
+                [disabled]="desabilitarBotoes"
+                (click)="gerarRelatorioMonitores()"
+                >
+                <i class="fas fa-fw" [ngClass]="spinnerConfirmarMonitores ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+                Monitores
+            </button>
+        </div>
+        <div class="col-lg-3" style="text-align: center;">
+            <button class="btn btn-primary"
+                style="width: 100%;"
+                [disabled]="desabilitarBotoes"
+                (click)="abrirDialogGuarda()"
+                >
+                <i class="fas fa-fw" [ngClass]="spinnerConfirmarGuarda ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+                Guarda do dia
+            </button>
+        </div>
+        <div class="col-lg-3" style="text-align: center;">
+            <button class="btn btn-primary"
+                style="width: 100%;"
+                [disabled]="desabilitarBotoes"
+                (click)="abrirDialogPelotao()"
+                >
+                <i class="fas fa-fw" [ngClass]="spinnerConfirmarMembros ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+                Membros Pelotão
+            </button>
+        </div>
+    </div>
+</div>
+
+<p-dialog [(visible)]="dialogGuarda" [draggable]="false" [closable]="false" [modal]="true"
+    [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
+    
+    <p-header>
+        Escolher data do Relatorio
+    </p-header>
+   
+    <div class="row">
+        <div class="col-12 mt-2">
+            <input [(ngModel)]="dataEscrita"
+                class="form-control bloco m-0 largura-input-cabecalho btn-pesquisa mr-1 pr-0 " 
+                style="display: inline !important;" type="date" placeholder="Data..">
+        </div>
+    </div>
+    
+    <p-footer>
+       
+        <button [disabled]="spinnerConfirmarGuarda" class="btn btn-danger" (click)="fecharDialogGuarda()">
+            <i class="fas fa-fw fa-times"></i>
+            Cancelar
+        </button>
+        
+        <button class="btn btn-success m-0"
+            [disabled]="spinnerConfirmarGuarda"
+            (click)="gerarRelatorioGuarda()">
+            <i class="fas fa-fw" [ngClass]="spinnerConfirmarGuarda ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+            Confirmar
+        </button>
+        
+    </p-footer>
+  
+</p-dialog>
+
+<p-dialog [(visible)]="dialogPelotao" [draggable]="false" [closable]="false" [modal]="true"
+    [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
+    
+    <p-header>
+        Escolher Pelotão
+    </p-header>
+   
+    <div class="row">
+        <div class="col-12 mt-2">
+            <input id="nome" style="width: 100%;" autocomplete="off" pInputText type="number" 
+            [(ngModel)]="numeroPelotao">
+        </div>
+    </div>
+    
+    <p-footer>
+       
+        <button [disabled]="spinnerConfirmarMembros" class="btn btn-danger" (click)="fecharDialogPelotao()">
+            <i class="fas fa-fw fa-times"></i>
+            Cancelar
+        </button>
+        
+        <button class="btn btn-success m-0"
+            [disabled]="spinnerConfirmarMembros"
+            (click)="gerarRelatorioMembrosPelotao()">
+            <i class="fas fa-fw" [ngClass]="spinnerConfirmarMembros ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+            Confirmar
+        </button>
+        
+    </p-footer>
+  
+</p-dialog>

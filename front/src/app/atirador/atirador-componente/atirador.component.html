@@ -83,7 +83,7 @@
                          <button class="btn btn btn-warning text-white mr-2" pTooltip="Editar atirador" (click)="abrirDialogEditarAtirador(atiradorCorpo)">
                             <i class="fas fa-fw fa-edit"></i>
                          </button>
-                         <button [ngStyle]="{'display':atiradorCorpo.ocupacao === 'C' ? 'none' : ''} " class="btn btn-primary mr-2" pTooltip="Promover atirador para aluno" (click)="abrirDialogPromocao(atiradorCorpo)">
+                         <button [ngStyle]="{'display':atiradorCorpo.ocupacao === 'A' ? '' : 'none'} " class="btn btn-primary mr-2" pTooltip="Promover atirador para aluno" (click)="abrirDialogPromocao(atiradorCorpo)">
                             <i class="fas fa-fw fa-user-plus"></i>
                          </button>
                          <button class="btn btn-orange mr-2" pTooltip="Adicionar FATT" (click)="abrirDialogFATT(atiradorCorpo)">

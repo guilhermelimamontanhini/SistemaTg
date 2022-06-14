@@ -11,6 +11,7 @@ import { DesligadosService } from '../shared/service/desligados.service';
 export class DesligadosComponente implements OnInit {
 
   public desligados: Desligados[] = [];
+  public desligadoDeletado: Desligados = new Desligados();
   public colunasTabela: any[];
 
   public motivo: String;
@@ -56,6 +57,50 @@ export class DesligadosComponente implements OnInit {
         }
       } 
     )
+  }
+
+  public abrirDialogMotivo(motivoDispensamento: String): void {
+    this.dialogMotivo = true;
+    this.motivo = motivoDispensamento;
+  }
+
+  public fecharDialogMotivo(): void {
+    this.dialogMotivo = false;
+    this.motivo = '';
+  }
+
+  public abrirDialogDeletar(desligadoQueSeraDeletado: Desligados) {
+    this.desligadoDeletado = desligadoQueSeraDeletado;
+    this.dialogDeletar = true;
+  }
+
+  public fecharDialogDeletar() {
+    this.desligadoDeletado = new Desligados();
+    this.dialogDeletar = false;
+  }
+
+  public deletarDesligado(id: Number): void {
+    this.desabilitarBotoes = true;
+    this.toasty.clearAll();
+    this.desligadosService.deletarDesligado(this.desligadoDeletado.idDesligado).subscribe(
+      () => {
+
+      },
+      (erro) => {
+        this.desabilitarBotoes = false;
+        if (erro.status === 200) {
+          this.listarTodosDesligados();
+          this.toasty.success("Desligado deletado com sucesso");
+        }
+        if(erro.status == 404) {
+          this.toasty.warning("Desligado não encontrado");
+        } else if(erro.status == 500) {
+          this.toasty.error("Erro de conexão");
+        }
+        this.fecharDialogDeletar();
+      }
+    )
+
   }
 
 }

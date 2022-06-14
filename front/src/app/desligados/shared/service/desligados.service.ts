@@ -20,4 +20,8 @@ export class DesligadosService {
     return this.http.get<Desligados[]>(this.conexao.getServidor() + `/desligado`);
   }
 
+  public deletarDesligado(id: Number): any {
+    return this.http.delete(this.conexao.getServidor() + `/desligado/deletar/` + id);
+  }
+
 }
