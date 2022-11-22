@@ -56,7 +56,6 @@ export class AtiradorComponente implements OnInit {
       { field: 'nome', header: 'Nome', style: 'coluna-nome'},
       { field: 'nomeGuerra', header: 'Nome de Guerra', style: 'coluna-guerra'},
       { field: 'ocupacao', header: 'Ocupação', style: 'coluna-ocupacao'},
-      // { field: 'pontos', header: 'Pontos', style: 'coluna-pontos'},
       { field: 'acao', header: 'Ação', style: 'coluna-acao'}
     ];
 
@@ -292,6 +291,8 @@ export class AtiradorComponente implements OnInit {
     this.dialogPromocao = true;
     this.raAtirador = atiradorSelecionado.ra;
     this.nomeAtirador = atiradorSelecionado.nomeGuerra;
+    this.ocupacao = atiradorSelecionado.ocupacao;
+    
   }
 
   /**
@@ -303,6 +304,7 @@ export class AtiradorComponente implements OnInit {
     this.dialogPromocao = false;
     this.raAtirador = 0;
     this.nomeAtirador = '';
+    this.ocupacao = '';
   }
 
   /**

@@ -127,15 +127,16 @@
     </p-header>
 
     <div class="row">
-        <div class="col-12 p-20">
-            <textarea [(ngModel)]="this.justificativaAdicionada.justificativa"
-                autocomplete="off" class="textAreaMotivo m-0 mt-1" disabled="true"> </textarea>
+        <div class="col-12 p-10">
+            Aplicar FATT no atirador <b>{{nomeDeGuerra}}</b>?
         </div>
     </div>
-   
+
+    <b>{{this.justificativaAdicionada.justificativa ? 'Justificativa:' : 'Não se justificou'}}</b>
     <div class="row">
-        <div class="col-12 p-10">
-            Deseja excluir <b>{{nomeDeGuerra}}</b> permanentemente da base dados?
+        <div class="col-12 p-20" [ngStyle]="{'display': this.justificativaAdicionada.justificativa ? '' : 'none'}">
+            <textarea [(ngModel)]="this.justificativaAdicionada.justificativa"
+                autocomplete="off" class="textAreaMotivo m-0 mt-1" disabled="true"> </textarea>
         </div>
     </div>
 

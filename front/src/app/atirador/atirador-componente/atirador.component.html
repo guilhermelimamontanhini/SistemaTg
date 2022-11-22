@@ -67,12 +67,6 @@
                         </span>
                         {{ atiradorCorpo.ocupacao === 'A' ? "Atirador" : atiradorCorpo.ocupacao === 'C' ? "Aluno do Curso" : "Monitor" }}
                     </td>
-                    <!-- <td class="texto-cabecalho">
-                        <span class="ui-column-title">
-                            Pontos
-                        </span>
-                        {{ atiradorCorpo.pontos }}
-                    </td> -->
                     <td class="texto-cabecalho">
                          <span class="ui-column-title">
                             Ação
@@ -83,8 +77,8 @@
                          <button class="btn btn btn-warning text-white mr-2" pTooltip="Editar atirador" (click)="abrirDialogEditarAtirador(atiradorCorpo)">
                             <i class="fas fa-fw fa-edit"></i>
                          </button>
-                         <button [ngStyle]="{'display':atiradorCorpo.ocupacao === 'A' ? '' : 'none'} " class="btn btn-primary mr-2" pTooltip="Promover atirador para aluno" (click)="abrirDialogPromocao(atiradorCorpo)">
-                            <i class="fas fa-fw fa-user-plus"></i>
+                         <button class="btn mr-2" [ngClass]="atiradorCorpo.ocupacao == 'A' ? 'btn-primary' : 'btn-danger'" [pTooltip]="atiradorCorpo.ocupacao == 'A' ? 'Promover atirador para aluno' : 'Remover matricula do curso de cabo'" (click)="abrirDialogPromocao(atiradorCorpo)">
+                            <i class="fas fa-fw" [ngClass]="atiradorCorpo.ocupacao == 'A' ? 'fa-user-plus' : 'fa-user-minus'"></i>
                          </button>
                          <button class="btn btn-orange mr-2" pTooltip="Adicionar FATT" (click)="abrirDialogFATT(atiradorCorpo)">
                             <i class="fas fa-fw fa-plus-square"></i>
@@ -168,11 +162,11 @@
 
     <div class="row mt-2">
         <div class="col-6 p-20">
-            <p class="mt-1"><b>Quantidade guardas pretas: </b></p>
+            <p class="mt-1"><b>Quantidade guardas de dia de semana: </b></p>
             <input id="diaSemana" style="width: 100%;" autocomplete="off" pInputText type="number" [(ngModel)]="atualizarDados.quantidadeGuardaDiaSemana">
         </div>
         <div class="col-6 p-20">
-            <p class="mt-1"><b>Quantidade guardas vermelhas: </b></p>
+            <p class="mt-1"><b>Quantidade guardas de fins de semana: </b></p>
             <input id="fimSemana" style="width: 100%;" autocomplete="off" pInputText type="number" [(ngModel)]="atualizarDados.quantidadeGuardaFimSemana">
         </div>
     </div>
@@ -262,15 +256,18 @@
     [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
     
     <p-header>
-        <b>Promoção para aluno do curso</b>
+        <b>{{ocupacao == 'A' ? "Promoção para aluno do curso" : "Remoção da matricula do curso de cabo"}}</b>
     </p-header>
    
     <div class="row">
-        <div class="col-12">
+        <div class="col-12" [ngStyle]="{'display': ocupacao === 'A' ? '' : 'none'}">
             <p>O Atirador <b>{{ nomeAtirador }}</b> irá ingressar no curso de cabo?</p>
         </div>
+        <div class="col-12" [ngStyle]="{'display': ocupacao === 'C' ? '' : 'none'}">
+            <p>O Atirador <b>{{ nomeAtirador }}</b> irá ser removido do curso de cabo?</p>
+        </div>
     </div>
-    
+
     <p-footer>
        
         <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogPromocao()">
@@ -317,10 +314,10 @@
 
     <div class="row">
         <div class="col-6">
-            <b>Quantidade de guardas pretas:</b> {{informacoesAtirador.quantidadeGuardaDiaSemana}}
+            <b>Quantidade de guardas de dia de semana:</b> {{informacoesAtirador.quantidadeGuardaDiaSemana}}
         </div>
         <div class="col-6"> 
-            <b>Quantidade de guardas pretas:</b> {{informacoesAtirador.quantidadeGuardaFimSemana}}
+            <b>Quantidade de guardas de fins de semana:</b> {{informacoesAtirador.quantidadeGuardaFimSemana}}
         </div>
     </div>
 
