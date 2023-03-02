@@ -1,0 +1,249 @@
+CREATE TABLE alistado
+(
+    id long NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome varchar(50),
+	cpf varchar(15),
+	refratario varchar(1)
+);
+
+select * from alistado
+
+drop table alistado
+
+INSERT INTO alistado(nome, cpf, refratario) VALUES ('Guilherme', '518-681-968.95', 'N'); 
+
+CREATE TABLE despensado
+(
+    id long NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome varchar(50),
+	cpf varchar(15),
+	motivo varchar(300),
+);
+
+CREATE TABLE atirador
+(
+	ra long NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nome varchar(50),
+	cpf varchar(15),
+	nomeguerra varchar(15),
+	ocupacao varchar(1),
+	pontos int,
+	quantidadeguardafimsemana int,
+	quantidadeguardadiasemana int,
+	concluiutg bool,
+	realizoutiro bool,
+	destaque varchar(1),
+	cursocabo bool, 
+	numeropelotao int
+);
+
+1 Grupo --------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Carlos Magnus', '000.000.000-01', 'Magnus', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Rodrigo Aragão', '000.000.000-02', 'Aragão', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Ryan Gomes', '000.000.000-03', 'Gomes', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Yago Nunes', '000.000.000-04', 'Yago', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Benjamin Rezende', '000.000.000-05', 'Rezende', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Anthony Vieira', '000.000.000-06', 'Anthony', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Otávio Santos', '000.000.000-07', 'Santos', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Bryan Souza', '000.000.000-08', 'Bryan', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Raul Gonçalves', '000.000.000-09', 'Gonçalves', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+
+2 Grupo --------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Davi Martins', '000.000.000-10', 'Martins', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('André Carvalho', '000.000.000-11', 'Carvalho', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Cauã Caldeira', '000.000.000-12', 'Caldeira', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Samuel Sales', '000.000.000-13', 'Sales', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Daniel Campos', '000.000.000-14', 'Campos', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Pedro da Mota', '000.000.000-15', 'da Mota', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Leonardo Duarte', '000.000.000-16', 'Duarte', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Gabriel Silva', '000.000.000-17', 'Gabriel', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Anthony Lopes', '000.000.000-18', 'Lopes', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Luiz Otávio Santos', '000.000.000-19', 'Otávio', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+3 Grupo --------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Henrique Costa', '000.000.000-20', 'Henrique', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Pedro Henrique Silveira', '000.000.000-21', 'Silveira', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Yuri Fogaça', '000.000.000-22', 'Yuri', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Pedro Miguel Cunha', '000.000.000-23', 'Cunha', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Paulo Mendes', '000.000.000-24', 'Mendes', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Thomas Novaes', '000.000.000-25', 'Thomas', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Lorenzo Ribeiro', '000.000.000-26', 'Lorenzo', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Luigi Nascimento', '000.000.000-27', 'Luigi', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Renan Freitas', '000.000.000-28', 'Renan', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Luiz Otávio Viana', '000.000.000-29', 'Viana', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+4 Grupo --------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('João Lucas Melo', '000.000.000-30', 'Lucas Melo', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Breno Cardoso', '000.000.000-31', 'Cardoso', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Eduardo Souza', '000.000.000-32', 'Eduardo', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Enzo Gabriel Caldeira', '000.000.000-33', 'Caldeira', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Samuel Campos', '000.000.000-34', 'Samuel', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Enrico Barros', '000.000.000-35', 'Enrico', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Davi Lucas Lima', '000.000.000-36', 'Lucas Lima', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Kevin Vieira', '000.000.000-37', 'Vieira', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Otávio Moraes', '000.000.000-38', 'Moraes', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Pedro Lucas Gomes', '000.000.000-39', 'Lucas', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+5 Grupo --------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Carlos Eduardo Mendes', '000.000.000-40', 'Carlos', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Miguel Martins', '000.000.000-42', 'Miguel', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Ian Aragão', '000.000.000-42', 'Ian', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Otávio Porto', '000.000.000-43', 'Porto', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('João Lucas Carvalho', '000.000.000-44', 'Lucas Carvalho', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Guilherme Freitas', '000.000.000-45', 'Freitas', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Miguel Aragão', '000.000.000-46', 'Miguel Aragão', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Arthur Jesus', '000.000.000-47', 'Jesus', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Gabriel Ferreira', '000.000.000-48', 'Ferreira', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Pedro Lucas Rocha', '000.000.000-49', 'Rocha', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+6 Grupo --------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Matheus Campos', '000.000.000-50', 'Matheus', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Danilo Carvalho', '000.000.000-51', 'Danilo', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Miguel Farias', '000.000.000-52', 'Farias', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Pedro Miguel Monteiro', '000.000.000-53', 'Monteiro', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Pedro Henrique Martins', '000.000.000-54', 'Pedro Henrique', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Juan Barros', '000.000.000-55', 'Barros', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Rafael Freitas', '000.000.000-56', 'Rafael', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Thales da Conceição', '000.000.000-57', 'Conceição', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Vinicius Barros', '000.000.000-58', 'Vinicius', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Henrique Fernandes', '000.000.000-59', 'Fernandes', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+7 Grupo --------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Davi Lucas Monteiro', '000.000.000-60', 'Lucas Monteiro', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Daniel da Cruz', '000.000.000-61', 'da Cruz', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Miguel Farias', '000.000.000-62', 'Farias', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Luiz Miguel Vieira', '000.000.000-63', 'Miguel Vieira', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Raul Pinto', '000.000.000-64', 'Pinto', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Benjamin Barbosa', '000.000.000-65', 'Barbosa', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Davi Lucas Cavalcanti', '000.000.000-66', 'Cavalcanti', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Pedro Miguel Melo', '000.000.000-67', 'Melo', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Raul Monteiro', '000.000.000-68', 'Raul Monteiro', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Erick Ferreira', '000.000.000-69', 'Erick', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+8 Grupo --------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Rodrigo Fogaça', '000.000.000-70', 'Fogaça', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Davi Lucas Almeida', '000.000.000-71', 'Almeida', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Augusto da Mota', '000.000.000-72', 'Mota', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Levi Nunes', '000.000.000-73', 'Nunes', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Bruno Alves', '000.000.000-74', 'Alves', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Heitor Melo', '000.000.000-75', 'Heitor', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Arthur Sales', '000.000.000-76', 'Arthur', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Calebe Moura', '000.000.000-77', 'Calebe', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Benício Monteiro', '000.000.000-78', 'Benício', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Guilherme Duarte', '000.000.000-79', 'Guilherme', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+9 Grupo --------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Breno Duarte', '000.000.000-80', 'Breno', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Cauã Novaes', '000.000.000-81', 'Novaes', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Vitor Novaes', '000.000.000-82', 'Vitor', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Vitor Hugo Freitas', '000.000.000-83', 'Hugo', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Bryan da Paz', '000.000.000-84', 'da Paz', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Lucas Costela', '000.000.000-85', 'Costela', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Luiz Felipe Teixeira', '000.000.000-86', 'Teixeira', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Diogo Souza', '000.000.000-87', 'Diogo', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Enzo Gabriel Cardoso', '000.000.000-88', 'Enzo', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Pedro Miguel Campos', '000.000.000-89', 'Miguel Campos', 'A', 0, 0, 0, false, false, 'N', false, 0);
+
+10 Grupo --------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Lucas Gabriel Silva', '000.000.000-90', 'Gabriel Silva', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Luiz Gustavo Araújo', '000.000.000-91', 'Araújo', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Cauã Costa', '000.000.000-92', 'Costa', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Felipe Peixoto', '000.000.000-93', 'Peixoto', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Nicolas Nogueira', '000.000.000-94', 'Nogueira', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Thomas da Rosa', '000.000.000-95', 'da Rosa', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Davi Ramos', '000.000.000-96', 'Ramos', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Pietro Moraes', '000.000.000-97', 'Pietro', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Joaquim Lopes', '000.000.000-98', 'Joaquim', 'A', 0, 0, 0, false, false, 'N', false, 0); 
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Augusto Nascimento', '000.000.000-99', 'Augusto', 'A', 0, 0, 0, false, false, 'N', false, 0);
+
+INSERT INTO atirador(nome, cpf, nomeguerra, ocupacao, pontos, quantidadeguardafimsemana, quantidadeguardadiasemana, concluiutg, realizoutiro, destaque, cursocabo, numeropelotao) VALUES ('Guilherme Montanhini', '000.000.001-00', 'Montanhini', 'A', 0, 0, 0, false, false, 'N', false, 0);
