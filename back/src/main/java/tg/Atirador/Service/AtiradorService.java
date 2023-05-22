@@ -177,7 +177,7 @@ public class AtiradorService {
 	 * @param <Long> id
 	 * @return ResponseEntity<String>
 	 */
-	public ResponseEntity<String> adicionarFATT(@PathVariable Long ra, @RequestBody @Valid OcorrenciaJustificativa ocorrenciaJustificativa) {
+	public ResponseEntity<String> adicionarFATD(@PathVariable Long ra, @RequestBody @Valid OcorrenciaJustificativa ocorrenciaJustificativa) {
 		
 		String mensagem = "";
 		boolean valido = false;

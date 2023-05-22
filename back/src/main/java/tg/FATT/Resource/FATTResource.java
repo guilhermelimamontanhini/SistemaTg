@@ -19,7 +19,7 @@ import tg.FATT.FORM.AdicionarJustificativa;
 import tg.FATT.Service.FATTService;
 
 @RestController
-@RequestMapping("/fatt")
+@RequestMapping("/fatd")
 public class FATTResource {
 	
 	@Autowired
@@ -31,8 +31,8 @@ public class FATTResource {
 	 * @return ResponseEntity<List<AtiradorDTO>>
 	 * */
 	@GetMapping
-	public ResponseEntity<List<FATTDTO>> listarTodosOsFATTs() {
-		return this.fattService.listarTodosOsFATTs();
+	public ResponseEntity<List<FATTDTO>> listarTodosOsFATDs() {
+		return this.fattService.listarTodosOsFATDs();
 	}
 	
 
@@ -56,9 +56,9 @@ public class FATTResource {
 	 * @param <Boolean> justificado
 	 * @return ResponseEntity<String>
 	 * */
-	@DeleteMapping("/aplicarfatt/{id}/{justificado}")
-	ResponseEntity<String> aplicarFatt(@PathVariable Long id, @PathVariable Boolean justificado) {
-		return this.fattService.aplicarFatt(id, justificado);
+	@DeleteMapping("/aplicarfatd/{id}/{justificado}")
+	ResponseEntity<String> aplicarFatd(@PathVariable Long id, @PathVariable Boolean justificado) {
+		return this.fattService.aplicarFatd(id, justificado);
 	}
 	
 }

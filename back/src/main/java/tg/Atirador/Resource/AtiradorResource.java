@@ -75,13 +75,13 @@ public class AtiradorResource {
 
 	/**
 	 * 
-	 * @description Método responsável para adicionar um FATT no Atirador
+	 * @description Método responsável para adicionar um FATD no Atirador
 	 * @param <Long> id
 	 * @return ResponseEntity<String>
 	 */
-	@PutMapping("/fatt/{ra}")
-	public ResponseEntity<String> adicionarFATT(@PathVariable Long ra, @RequestBody @Valid OcorrenciaJustificativa ocorrenciaJustificativa) {
-		return this.atiradorService.adicionarFATT(ra, ocorrenciaJustificativa);
+	@PutMapping("/fatd/{ra}")
+	public ResponseEntity<String> adicionarFATD(@PathVariable Long ra, @RequestBody @Valid OcorrenciaJustificativa ocorrenciaJustificativa) {
+		return this.atiradorService.adicionarFATD(ra, ocorrenciaJustificativa);
 	}
 	
 	/**

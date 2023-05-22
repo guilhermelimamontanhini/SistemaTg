@@ -34,16 +34,16 @@ public class FATTService {
 	 * @description Método responsável por listar todos os fatts
 	 * @return ResponseEntity<List<AtiradorDTO>>
 	 * */
-	public ResponseEntity<List<FATTDTO>> listarTodosOsFATTs() {
+	public ResponseEntity<List<FATTDTO>> listarTodosOsFATDs() {
 		
-		List<FATT> listaFatt = this.fattRepository.findAll();
+		List<FATT> listaFatd = this.fattRepository.findAll();
 		
-		if(listaFatt.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Não existem fatts cadastrados!");
+		if(listaFatd.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Não existem fatds cadastrados!");
 		}
 		
 		
-		return ResponseEntity.ok(FATTDTO.converterModelParaDTO(listaFatt));
+		return ResponseEntity.ok(FATTDTO.converterModelParaDTO(listaFatd));
 		
 	}
 	
@@ -87,21 +87,21 @@ public class FATTService {
 	 * @param <Boolean> justificado
 	 * @return ResponseEntity<String>
 	 * */
-	public ResponseEntity<String> aplicarFatt(@PathVariable Long id, @PathVariable Boolean justificado) {
+	public ResponseEntity<String> aplicarFatd(@PathVariable Long id, @PathVariable Boolean justificado) {
 		
 		String mensagem = "";
-		Optional<FATT> fatt = fattRepository.findByIdFatt(id);
-		Optional<Atirador> atiradorComFatt = this.atiradorRepository.findByRa(fatt.get().getRaAtirador());
+		Optional<FATT> fatd = fattRepository.findByIdFatt(id);
+		Optional<Atirador> atiradorComFatd = this.atiradorRepository.findByRa(fatd.get().getRaAtirador());
 		
-		if(fatt.isPresent()) {
-			if(fatt.get().getJustificativa().isEmpty() || !justificado) {
-				atiradorComFatt.get().setPontos(atiradorComFatt.get().getPontos() + 4);
+		if(fatd.isPresent()) {
+			if(fatd.get().getJustificativa().isEmpty() || !justificado) {
+				atiradorComFatd.get().setPontos(atiradorComFatd.get().getPontos() + 4);
 			} else if (justificado) {
-				atiradorComFatt.get().setPontos(atiradorComFatt.get().getPontos() + 2);
+				atiradorComFatd.get().setPontos(atiradorComFatd.get().getPontos() + 2);
 			}
 			try {
-				this.atiradorRepository.save(atiradorComFatt.get());
-				this.fattRepository.delete(fatt.get());
+				this.atiradorRepository.save(atiradorComFatd.get());
+				this.fattRepository.delete(fatd.get());
 				mensagem = "FATT aplicado com sucesso";
 			} catch(Exception e) {
 				e.printStackTrace();
