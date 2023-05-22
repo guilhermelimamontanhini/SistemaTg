@@ -69,13 +69,13 @@ export class AtiradorService {
 
     /**
      * 
-     * @description Serviço para adicionar um fatt
+     * @description Serviço para adicionar um fatd
      * @param {number} ra 
      * @param {OcorrenciaJustificativa} ocorrenciaJustificativa 
      * @return {Observable<OcorrenciaJustificativa>}
      */
-    public adicionarFATT(ra: number, ocorrenciaJustificativa: OcorrenciaJustificativa): Observable<OcorrenciaJustificativa> {
-      return this.http.put<OcorrenciaJustificativa>(this.conexao.getServidor() + `/atirador/fatt/` + ra, ocorrenciaJustificativa);
+    public adicionarFATD(ra: number, ocorrenciaJustificativa: OcorrenciaJustificativa): Observable<OcorrenciaJustificativa> {
+      return this.http.put<OcorrenciaJustificativa>(this.conexao.getServidor() + `/atirador/fatd/` + ra, ocorrenciaJustificativa);
     }
 
 }

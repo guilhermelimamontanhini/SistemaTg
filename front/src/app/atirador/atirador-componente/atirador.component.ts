@@ -33,7 +33,7 @@ export class AtiradorComponente implements OnInit {
   public dialogCadastrar: boolean;
   public dialogPromocao: boolean;
   public dialogInformacoes: boolean;
-  public dialogFATT: boolean;
+  public dialogFATD: boolean;
   public spinnerConfirmar: boolean;
   public desabilitarBotoes: boolean;
 
@@ -342,48 +342,48 @@ export class AtiradorComponente implements OnInit {
 
    /**
    * 
-   * @description Método para abrir dialog de fatt
+   * @description Método para abrir dialog de fatd
    * @return {void}
    */
-  public abrirDialogFATT(atiradorSelecionado: Atirador): void {
+  public abrirDialogFATD(atiradorSelecionado: Atirador): void {
     this.raAtirador = atiradorSelecionado.ra;
     this.nomeAtirador = atiradorSelecionado.nomeGuerra;
-    this.dialogFATT = true;
+    this.dialogFATD = true;
   }   
 
    /**
    * 
-   * @description Método para abrir dialog de fatt
+   * @description Método para abrir dialog de fatd
    * @return {void}
    */
-  public fecharDialogFATT(): void {
+  public fecharDialogFATD(): void {
     this.raAtirador = 0;
-    this.dialogFATT = false;
+    this.dialogFATD = false;
     this.ocorrenciaJustificativa = new OcorrenciaJustificativa();
   }
 
   /**
    * 
-   * @description Método para aplicar FATT no atirador
+   * @description Método para aplicar FATD no atirador
    * @return {void}
    */
-  public adicionarFATTAoAtirador(): void {
+  public adicionarFATDAoAtirador(): void {
     this.spinnerConfirmar = true;
-    this.atiradorService.adicionarFATT(this.raAtirador, this.ocorrenciaJustificativa).subscribe(
+    this.atiradorService.adicionarFATD(this.raAtirador, this.ocorrenciaJustificativa).subscribe(
       () => {},
       (erro) => {
         this.spinnerConfirmar = false;
         if (erro.status === 201) {  
-          this.toasty.success('Apuração de FATT concluida.');
+          this.toasty.success('Apuração de FATD concluida.');
         } else if (erro.status === 400) {
-          this.toasty.warning('Erro ao apurar FATT.');
+          this.toasty.warning('Erro ao apurar FATD.');
         } else if (erro.status === 404) {
           this.toasty.warning('Atirador não existe');
         } else {
           this.toasty.error('Erro de conexão');
         }
         this.listarTodosOsAtiradores();
-        this.fecharDialogFATT();
+        this.fecharDialogFATD();
       }
     )
 

@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastyService } from 'ng2-toasty';
 import { AdicionarJustificativa } from '../shared/modal/adicionarJustificativa.model';
-import { FATT } from '../shared/modal/fatt.model';
-import { FattService } from '../shared/service/fatt.service';
+import { FATD } from '../shared/modal/fatd.model';
+import { FatdService } from '../shared/service/fatd.service';
 
 @Component({
-  selector: 'app-fatt',
-  templateUrl: './fatt.component.html',
-  styleUrls: ['./fatt.component.css']
+  selector: 'app-fatd',
+  templateUrl: './fatd.component.html',
+  styleUrls: ['./fatd.component.css']
 })
-export class FattComponente implements OnInit {
+export class FatdComponente implements OnInit {
 
-  public fatts: FATT[] = [];
+  public fatds: FATD[] = [];
   public justificativaAdicionada: AdicionarJustificativa = new AdicionarJustificativa();
   public colunasTabela: any[];
 
-  public idFatt: number;
+  public idFatd: number;
   public nomeDeGuerra: string;
   public ocorrenciaJustificada: boolean;
 
@@ -26,7 +26,7 @@ export class FattComponente implements OnInit {
 
   constructor(
     private toasty: ToastyService, 
-    private fattService: FattService
+    private fatdService: FatdService
   ) { 
     this.colunasTabela = [
       { field: 'ra',header: 'RA', style: 'coluna-ra'},
@@ -38,25 +38,25 @@ export class FattComponente implements OnInit {
   }
 
   ngOnInit( ) {
-    this.listarTodosOsFatts();
+    this.listarTodosOsFatds();
   }
 
   /**
    * 
-   * @description Método que retorna todos os fatts
+   * @description Método que retorna todos os fatds
    * @return {void}
    */
-  public listarTodosOsFatts(): void {
+  public listarTodosOsFatds(): void {
     this.spinnerTabela = true;
-    this.fattService.listarOsFatts().subscribe(
-      (fattRetornados: FATT[]) => {
-        this.fatts = fattRetornados;
+    this.fatdService.listarOsFatds().subscribe(
+      (fatdRetornados: FATD[]) => {
+        this.fatds = fatdRetornados;
         this.spinnerTabela = false;
       },
       (erro) => {
         this.spinnerTabela = false;
         if(erro.status == 404) {
-          this.toasty.warning('Não existem fatts cadastrados!');
+          this.toasty.warning('Não existem fatds cadastrados!');
         } else {
           this.toasty.error('Erro de conexão');
         }
@@ -70,8 +70,8 @@ export class FattComponente implements OnInit {
    * @description Método para abrir o Dialog de adicionar justificativa
    * @return {void}
    */
-  public abrirDialogDeAdicionarJustificativa(idFatt: number) {
-    this.idFatt = idFatt;
+  public abrirDialogDeAdicionarJustificativa(idFatd: number) {
+    this.idFatd = idFatd;
     this.dialogJustificativa = true;
   }
 
@@ -81,27 +81,27 @@ export class FattComponente implements OnInit {
    * @return {void}
    */
   public fecharDialogDeAdicionarJustificativa() {
-    this.idFatt = 0;
+    this.idFatd = 0;
     this.justificativaAdicionada = new AdicionarJustificativa();
     this.dialogJustificativa = false;
   }
 
    /**
    * 
-   * @description Método para adicionar justificativa para o fatt
+   * @description Método para adicionar justificativa para o fatd
    * @return {void}
    */
-  public adicionarJustificativaAoFATT(): void {
+  public adicionarJustificativaAoFATD(): void {
     this.desabilitarBotoes = true;
     this.toasty.clearAll();
-    this.fattService.adicionarJustificativa(this.idFatt, this.justificativaAdicionada).subscribe(
+    this.fatdService.adicionarJustificativa(this.idFatd, this.justificativaAdicionada).subscribe(
       () => {
         this.desabilitarBotoes = false;
       },
       (erro) => {
         this.desabilitarBotoes = false;
         if (erro.status === 201) {
-          this.listarTodosOsFatts();
+          this.listarTodosOsFatds();
           this.toasty.success("Justificativa adicionado com sucesso");
         }
         if(erro.status == 404) {
@@ -117,50 +117,50 @@ export class FattComponente implements OnInit {
 
    /**
    * 
-   * @description Método para abrir o Dialog de aplicar FATT
+   * @description Método para abrir o Dialog de aplicar FATD
    * @return {void}
    */
-  public abrirDialogDeAplicarFATT(fatt: FATT): void {
-    this.idFatt = fatt.idFatt;
-    this.nomeDeGuerra = fatt.nomeGuerra;
-    this.justificativaAdicionada.justificativa = fatt.justificativa;
+  public abrirDialogDeAplicarFATD(fatd: FATD): void {
+    this.idFatd = fatd.idFatd;
+    this.nomeDeGuerra = fatd.nomeGuerra;
+    this.justificativaAdicionada.justificativa = fatd.justificativa;
     this.dialogAplicar = true;
   }
 
   /**
    * 
-   * @description Método para fechar o Dialog de aplicar FATT
+   * @description Método para fechar o Dialog de aplicar FATD
    * @return {void}
    */
-  public fecharDialogDeAplicarFATT(): void {
-    this.idFatt = 0;
+  public fecharDialogDeAplicarFATD(): void {
+    this.idFatd = 0;
     this.nomeDeGuerra = '';
     this.dialogAplicar = false;
   }
 
   /**
    * 
-   * @description Método para aplicar FATT ao atirador
+   * @description Método para aplicar FATD ao atirador
    * @return {void}
    */
-  public aplicarFATT(): void {
+  public aplicarFATD(): void {
     this.desabilitarBotoes = true;
     this.toasty.clearAll();
-    this.fattService.aplicarFATT(this.idFatt, this.ocorrenciaJustificada).subscribe(
+    this.fatdService.aplicarFATD(this.idFatd, this.ocorrenciaJustificada).subscribe(
       () => {
         this.desabilitarBotoes = false;
       }, 
       (erro) => {
         this.desabilitarBotoes = false;
         if(erro.status == 200) {
-          this.toasty.success("FATT aplicado com sucesso.");
+          this.toasty.success("FATD aplicado com sucesso.");
         } else if (erro.status == 400) {
-          this.toasty.warning("Erro ao aplicar fatt.")
+          this.toasty.warning("Erro ao aplicar fatd.")
         } else if (erro.status == 404) {
-          this.toasty.error("FATTs não encontrado.");
+          this.toasty.error("FATDs não encontrado.");
         }
-        this.fecharDialogDeAplicarFATT();
-        this.listarTodosOsFatts();
+        this.fecharDialogDeAplicarFATD();
+        this.listarTodosOsFatds();
       }
     )
 

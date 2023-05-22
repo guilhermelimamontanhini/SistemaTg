@@ -15,7 +15,7 @@ import { MenuModule } from './menu/menu.module';
 import { AtiradorModule } from './atirador/atirador.module';
 import { DesligadosModule } from './desligados/desligados.module';
 import { GuardasModule } from './guardas/guardas.module';
-import { FattModule } from './fatt/fatt.module';
+import { FatdModule } from './fatd/fatd.module';
 import { PelotoesModule } from './pelotoes/pelotoes.module';
 import { RelatoriosModule } from './relatorios/relatorios.module';
 
@@ -30,7 +30,7 @@ import { RelatoriosModule } from './relatorios/relatorios.module';
         DispensadosModule,
         DesligadosModule,
         GuardasModule,
-        FattModule,
+        FatdModule,
         PelotoesModule,
         RelatoriosModule,
         BrowserModule,

@@ -80,7 +80,7 @@
                          <button class="btn mr-2" [ngClass]="atiradorCorpo.ocupacao == 'A' ? 'btn-primary' : 'btn-danger'" [pTooltip]="atiradorCorpo.ocupacao == 'A' ? 'Promover atirador para aluno' : 'Remover matricula do curso de cabo'" (click)="abrirDialogPromocao(atiradorCorpo)">
                             <i class="fas fa-fw" [ngClass]="atiradorCorpo.ocupacao == 'A' ? 'fa-user-plus' : 'fa-user-minus'"></i>
                          </button>
-                         <button class="btn btn-orange mr-2" pTooltip="Adicionar FATT" (click)="abrirDialogFATT(atiradorCorpo)">
+                         <button class="btn btn-orange mr-2" pTooltip="Adicionar FATD" (click)="abrirDialogFATD(atiradorCorpo)">
                             <i class="fas fa-fw fa-plus-square"></i>
                          </button>
                          <button class="btn btn-danger mr-2" pTooltip="Desligar atirador" (click)="abrirDialogDesligarAtirador(atiradorCorpo)">
@@ -338,11 +338,11 @@
   
 </p-dialog>
 
-<p-dialog [(visible)]="dialogFATT" [draggable]="false" [closable]="false" [modal]="true"
+<p-dialog [(visible)]="dialogFATD" [draggable]="false" [closable]="false" [modal]="true"
     [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
     
     <p-header>
-        Adicionar FATT ao atirador {{nomeAtirador}}
+        Adicionar FATD ao atirador {{nomeAtirador}}
     </p-header>
    
     <div class="row">
@@ -366,14 +366,14 @@
     
     <p-footer>
        
-        <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogFATT()">
+        <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogFATD()">
             <i class="fas fa-fw fa-times"></i>
             Cancelar
         </button>
         
         <button class="btn btn-success m-0"
             [disabled]="spinnerConfirmar || !ocorrenciaJustificativa.ocorrencia"
-            (click)="adicionarFATTAoAtirador()">
+            (click)="adicionarFATDAoAtirador()">
             <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
             Confirmar
         </button>

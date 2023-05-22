@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FattComponente } from './fatts-componente/fatt.component';
+import { FatdComponente } from './fatds-componente/fatd.component';
 import { TableModule } from 'primeng/table';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TooltipModule } from 'primeng/tooltip';
@@ -12,7 +12,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [
-    FattComponente
+    FatdComponente
   ],
   imports: [
     CommonModule,
@@ -26,8 +26,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     RadioButtonModule
   ], 
   exports: [
-    FattComponente
+    FatdComponente
   ]
 
 })
-export class FattModule { }
+export class FatdModule { }

@@ -4,7 +4,7 @@ import { AlistadosComponente } from './alistados/alistados-componente/alistados.
 import { AtiradorComponente } from './atirador/atirador-componente/atirador.component';
 import { DesligadosComponente } from './desligados/desligados-componente/desligados.component';
 import { DispensadosComponente } from './dispensados/dispensados-componente/dispensados.component';
-import { FattComponente } from './fatt/fatts-componente/fatt.component';
+import { FatdComponente } from './fatd/fatds-componente/fatd.component';
 import { GuardasComponente } from './guardas/guardas-componente/guardas.component';
 import { PelotoesComponente } from './pelotoes/pelotoes-componente/pelotoes.component';
 import { RelatoriosComponente } from './relatorios/relatorios-componente/relatorios.component';
@@ -15,7 +15,7 @@ const routes: Routes = [
     {path: 'dispensados', component: DispensadosComponente},
     {path: 'desligados', component: DesligadosComponente},
     {path: 'guardas', component: GuardasComponente},
-    {path: 'fatts', component: FattComponente},
+    {path: 'fatds', component: FatdComponente},
     {path: 'pelotoes', component: PelotoesComponente},
     {path: 'relatorios', component: RelatoriosComponente}
   ];

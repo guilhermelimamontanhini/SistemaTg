@@ -1,6 +1,6 @@
-export class FATT {
+export class FATD {
 
-    idFatt: number;
+    idFatd: number;
     raAtirador: number;
     nomeGuerra: string;
     ocorrencia: string;

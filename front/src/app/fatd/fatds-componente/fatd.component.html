@@ -3,15 +3,15 @@
 <div class="container">
     <div class="row"> 
        <div class="col-12"> 
-           <div class="tituloPagina">FATT</div>
-            <p-table #tabelaFatt [paginator]="true" [rows]="10" [responsive]="true" [columns]="colunasTabela" [value]="fatts" [globalFilterFields]="['nome']">
+           <div class="tituloPagina"><span pTooltip="Formulário de Apuração de Transgressão Disciplinar">FATD</span></div>
+            <p-table #tabelaFatd [paginator]="true" [rows]="10" [responsive]="true" [columns]="colunasTabela" [value]="fatds" [globalFilterFields]="['nome']">
  
                 <ng-template pTemplate="caption">
                     <div class="container p-0">
                         <div class="row">
                             <div class="col-12 text-right input-tabela">
                                 <i class="fas fa-fw fa-search icone-busca mr-2"></i>
-                                <input (input)="tabelaFatt.filterGlobal($event.target.value, 'contains')"
+                                <input (input)="tabelaFatd.filterGlobal($event.target.value, 'contains')"
                                     class="form-control bloco m-0 largura-input-cabecalho btn-pesquisa mr-1 pr-0 "
                                     style="display: inline !important;" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
                             </div>
@@ -19,61 +19,61 @@
                     </div>
                 </ng-template>
  
-                <ng-template pTemplate="header" let-fattsCabecalho>
+                <ng-template pTemplate="header" let-fatdsCabecalho>
                     <tr>
-                        <th *ngFor="let fatts of fattsCabecalho" [ngClass]="fatts.style" [pSortableColumn]="fatts.field">
-                                <p-sortIcon [field]="fatts.field" *ngIf="fatts.field !== 'acao'"></p-sortIcon>
-                                    {{ fatts.header }}
+                        <th *ngFor="let fatds of fatdsCabecalho" [ngClass]="fatds.style" [pSortableColumn]="fatds.field">
+                                <p-sortIcon [field]="fatds.field" *ngIf="fatds.field !== 'acao'"></p-sortIcon>
+                                    {{ fatds.header }}
                         </th>
                     </tr>
                 </ng-template>
  
-                <ng-template pTemplate="body" let-fattsCorpo>
+                <ng-template pTemplate="body" let-fatdsCorpo>
                     <tr>
                         <td class="texto-cabecalho">
                             <span class="ui-column-title">
                                 RA
                             </span>
-                            {{ fattsCorpo.raAtirador }}
+                            {{ fatdsCorpo.raAtirador }}
                         </td>
                         <td class="texto-cabecalho">
                             <span class="ui-column-title">
                                 Nome de Guerra
                             </span>
-                            {{ fattsCorpo.nomeGuerra }}
+                            {{ fatdsCorpo.nomeGuerra }}
                         </td>
                         <td class="texto-cabecalho">
                             <span class="ui-column-title">
                                 Ocorrência
                             </span>
-                            {{ fattsCorpo.ocorrencia }}
+                            {{ fatdsCorpo.ocorrencia }}
                         </td>
                         <td class="texto-cabecalho">
                             <span class="ui-column-title">
                                 Justificativa
                             </span>
-                            {{ fattsCorpo.justificativa ? fattsCorpo.justificativa : "Não se justificou" }}
+                            {{ fatdsCorpo.justificativa ? fatdsCorpo.justificativa : "Não se justificou" }}
                         </td>
                         <td class="texto-cabecalho">
                             <span class="ui-column-title">
                                 Ação
                             </span>
-                            <button type="button" class="btn btn-warning text-white" [disabled]="desabilitarBotoes" pTooltip="Adicionar justificativa" (click)="abrirDialogDeAdicionarJustificativa(fattsCorpo.idFatt)">
+                            <button type="button" class="btn btn-warning text-white" [disabled]="desabilitarBotoes" pTooltip="Adicionar justificativa" (click)="abrirDialogDeAdicionarJustificativa(fatdsCorpo.idFatd)">
                                 <i class="fas fa-fw fa-pen-square"></i>
                             </button>
-                            <button type="button" class="btn btn-dark ml-2" [disabled]="desabilitarBotoes" pTooltip="Aplicar FATT" (click)="abrirDialogDeAplicarFATT(fattsCorpo)">
+                            <button type="button" class="btn btn-dark ml-2" [disabled]="desabilitarBotoes" pTooltip="Aplicar FATD" (click)="abrirDialogDeAplicarFATD(fatdsCorpo)">
                                 <i class="fas fa-fw fa-address-book"></i>
                             </button>
                         </td>
                     </tr>
                  </ng-template>
  
-                <ng-template pTemplate="emptymessage" let-fattsVazio>
+                <ng-template pTemplate="emptymessage" let-fatdsVazio>
                     <tr class="text-center">
-                        <td class="altura-spinner text-center mt-3 pt-4" [attr.colspan]="fattsVazio.length" *ngIf="spinnerTabela">
+                        <td class="altura-spinner text-center mt-3 pt-4" [attr.colspan]="fatdsVazio.length" *ngIf="spinnerTabela">
                             <p-progressSpinner [animationDuration]="'.75s'" strokeWidth="4" fill="#EEEEEE"></p-progressSpinner>
                         </td>
-                        <td class="text-center" [attr.colspan]="fattsVazio.length" *ngIf="!spinnerTabela">
+                        <td class="text-center" [attr.colspan]="fatdsVazio.length" *ngIf="!spinnerTabela">
                             Nenhum Registro Encontrado
                         </td>
                     </tr>
@@ -110,7 +110,7 @@
 
         <button class="btn btn-success m-0"
             [disabled]="desabilitarBotoes"
-            (click)="adicionarJustificativaAoFATT()">
+            (click)="adicionarJustificativaAoFATD()">
             <i class="fas fa-fw" [ngClass]="desabilitarBotoes ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
             Confirmar
         </button>
@@ -123,12 +123,12 @@
     [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
     
     <p-header>
-        <b>Aplicar FATT</b>
+        <b>Aplicar FATD</b>
     </p-header>
 
     <div class="row">
         <div class="col-12 p-10">
-            Aplicar FATT no atirador <b>{{nomeDeGuerra}}</b>?
+            Aplicar FATD no atirador <b>{{nomeDeGuerra}}</b>?
         </div>
     </div>
 
@@ -150,14 +150,14 @@
 
     <p-footer>
        
-        <button [disabled]="desabilitarBotoes" class="btn btn-danger" (click)="fecharDialogDeAplicarFATT()">
+        <button [disabled]="desabilitarBotoes" class="btn btn-danger" (click)="fecharDialogDeAplicarFATD()">
             <i class="fas fa-fw fa-times"></i>
             Cancelar
         </button>
         
         <button class="btn btn-success m-0"
             [disabled]="desabilitarBotoes"
-            (click)="aplicarFATT()">
+            (click)="aplicarFATD()">
             <i class="fas fa-fw" [ngClass]="desabilitarBotoes ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
             Confirmar
         </button>
