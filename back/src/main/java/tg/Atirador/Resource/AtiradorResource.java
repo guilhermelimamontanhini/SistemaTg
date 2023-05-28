@@ -68,9 +68,9 @@ public class AtiradorResource {
 	 * @param <Long> ra
 	 * @return ResponseEntity<String>
 	 */
-	@PutMapping("/ocupacao/{ra}")
-	public ResponseEntity<String> promoverAtiradorParaAlunoResource(@PathVariable Long ra) {
-		return this.atiradorService.promoverAtiradorParaAlunoService(ra);
+	@PutMapping("/ocupacao/{ra}/{promover}")
+	public ResponseEntity<String> promoverAtiradorParaAlunoResource(@PathVariable Long ra, @PathVariable Boolean promover) {
+		return this.atiradorService.promoverAtiradorParaAlunoService(ra, promover);
 	}
 
 	/**

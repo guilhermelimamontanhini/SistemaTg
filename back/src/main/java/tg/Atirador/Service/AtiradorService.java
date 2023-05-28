@@ -145,13 +145,13 @@ public class AtiradorService {
 	 * @param <Long> id
 	 * @return ResponseEntity<String>
 	 */
-	public ResponseEntity<String> promoverAtiradorParaAlunoService(@PathVariable Long ra) {
+	public ResponseEntity<String> promoverAtiradorParaAlunoService(@PathVariable Long ra, @PathVariable Boolean promover) {
 		
 		String mensagem = "";
 		boolean valido = false;
 		
 		AlterarOcupacao alterarOcupacao = new AlterarOcupacao();
-		Atirador atirador = alterarOcupacao.atualizarDadosDoAtirador(ra, atiradorRepository);
+		Atirador atirador = alterarOcupacao.atualizarDadosDoAtirador(ra, promover, atiradorRepository);
 		
 		try {
 			atiradorRepository.save(atirador);
