@@ -77,8 +77,8 @@
                          <button class="btn btn btn-warning text-white mr-2" pTooltip="Editar atirador" (click)="abrirDialogEditarAtirador(atiradorCorpo)">
                             <i class="fas fa-fw fa-edit"></i>
                          </button>
-                         <button class="btn mr-2" [ngClass]="atiradorCorpo.ocupacao == 'A' ? 'btn-primary' : 'btn-danger'" [pTooltip]="atiradorCorpo.ocupacao == 'A' ? 'Promover atirador para aluno' : 'Remover matricula do curso de cabo'" (click)="abrirDialogPromocao(atiradorCorpo)">
-                            <i class="fas fa-fw" [ngClass]="atiradorCorpo.ocupacao == 'A' ? 'fa-user-plus' : 'fa-user-minus'"></i>
+                         <button class="btn mr-2" [ngStyle]="{'display': atiradorCorpo.ocupacao === 'M' ? 'none' : ''}"  [ngClass]="atiradorCorpo.ocupacao == 'A' ? 'btn-primary' : 'btn-success'" [pTooltip]="atiradorCorpo.ocupacao == 'A' ? 'Promover atirador para aluno' : 'Alterar ocupação do aluno'" (click)="abrirDialogPromocao(atiradorCorpo)">
+                            <i class="fas fa-fw" [ngClass]="atiradorCorpo.ocupacao == 'A' ? 'fa-user-plus' : 'fa-user'"></i>
                          </button>
                          <button class="btn btn-orange mr-2" pTooltip="Adicionar FATD" (click)="abrirDialogFATD(atiradorCorpo)">
                             <i class="fas fa-fw fa-plus-square"></i>
@@ -256,31 +256,54 @@
     [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
     
     <p-header>
-        <b>{{ocupacao == 'A' ? "Promoção para aluno do curso" : "Remoção da matricula do curso de cabo"}}</b>
+        <b>{{ocupacao == 'A' ? "Promoção para aluno do curso" : "Editar matricula do curso de cabo"}}</b>
     </p-header>
    
     <div class="row">
         <div class="col-12" [ngStyle]="{'display': ocupacao === 'A' ? '' : 'none'}">
             <p>O Atirador <b>{{ nomeAtirador }}</b> irá ingressar no curso de cabo?</p>
         </div>
-        <div class="col-12" [ngStyle]="{'display': ocupacao === 'M' ? '' : 'none'}">
-            <p>O Atirador <b>{{ nomeAtirador }}</b> irá ser removido do curso de cabo?</p>
+        <div class="col-12" [ngStyle]="{'display': ocupacao === 'C' ? '' : 'none'}">
+            <p>O Atirador <b>{{ nomeAtirador }}</b> irá ser removido do curso de cabo ou promovido a monitor?</p>
         </div>
     </div>
 
     <p-footer>
        
-        <button [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogPromocao()">
+        <button [ngStyle]="{'display': ocupacao === 'A' ? '' : 'none'}" [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogPromocao()">
+            <i class="fas fa-fw fa-times"></i>
+            Cancelar
+        </button>
+            
+         <button [ngStyle]="{'display': ocupacao === 'A' ? '' : 'none'}" class="btn btn-success m-0"
+            [disabled]="spinnerConfirmar"
+            (click)="promoverAtiradorParaAluno(true)"
+            >
+            <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+            Confirmar
+        </button>
+
+        <button [ngStyle]="{'display': ocupacao === 'C' ? '' : 'none'}" [disabled]="spinnerConfirmar" class="btn btn-danger" (click)="fecharDialogPromocao()">
             <i class="fas fa-fw fa-times"></i>
             Cancelar
         </button>
         
-        <button class="btn btn-success m-0"
+        <button [ngStyle]="{'display': ocupacao === 'C' ? '' : 'none'}" 
+            class="btn btn-dark m-0"
             [disabled]="spinnerConfirmar"
-            (click)="promoverAtiradorParaAluno()"
+            (click)="promoverAtiradorParaAluno(false)"
+            pTooltip="Remover do curso"
+            >
+            <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-address-book'"></i>
+        </button>
+
+        <button [ngStyle]="{'display': ocupacao === 'C' ? '' : 'none'}" 
+            class="btn btn-success ml-2"
+            [disabled]="spinnerConfirmar"
+            (click)="promoverAtiradorParaAluno(true)"
+            pTooltip="Promover a Monitor"
             >
             <i class="fas fa-fw" [ngClass]="spinnerConfirmar ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
-            Confirmar
         </button>
         
     </p-footer>

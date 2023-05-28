@@ -63,8 +63,8 @@ export class AtiradorService {
      * @param {number} ra 
      * @return {any}
      */
-    public promoverAtiradorParaAluno(ra: number): any {
-      return this.http.put(this.conexao.getServidor() + `/atirador/ocupacao/` + ra, '');
+    public promoverAtiradorParaAluno(ra: number, promover: boolean): any {
+      return this.http.put(this.conexao.getServidor() + `/atirador/ocupacao/` + ra + `/` + promover, '');
     }
 
     /**

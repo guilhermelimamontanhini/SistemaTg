@@ -292,7 +292,7 @@ export class AtiradorComponente implements OnInit {
     this.raAtirador = atiradorSelecionado.ra;
     this.nomeAtirador = atiradorSelecionado.nomeGuerra;
     this.ocupacao = atiradorSelecionado.ocupacao;
-    
+    console.log(atiradorSelecionado.ocupacao);
   }
 
   /**
@@ -312,9 +312,9 @@ export class AtiradorComponente implements OnInit {
    * @description Método para promover atirador para o curso de cabo
    * @return {void}
    */
-  public promoverAtiradorParaAluno(): void {
+  public promoverAtiradorParaAluno(promover: boolean): void {
     this.spinnerConfirmar = true;
-    this.atiradorService.promoverAtiradorParaAluno(this.raAtirador).subscribe(
+    this.atiradorService.promoverAtiradorParaAluno(this.raAtirador, promover).subscribe(
       () => {},
       (erro) => {
         this.spinnerConfirmar = false;
