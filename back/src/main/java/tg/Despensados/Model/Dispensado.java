@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "dispensado")
-public class Despensado {
+public class Dispensado {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -26,11 +26,11 @@ public class Despensado {
 	@Size(max = 300)
 	private String motivo;
 	
-	public Despensado() {
+	public Dispensado() {
 		
 	}
 	
-	public Despensado(String nome, String cpf, String motivo) {
+	public Dispensado(String nome, String cpf, String motivo) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.motivo = motivo;

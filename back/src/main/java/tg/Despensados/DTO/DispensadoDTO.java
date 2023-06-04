@@ -3,7 +3,7 @@ package tg.Despensados.DTO;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import tg.Despensados.Model.Despensado;
+import tg.Despensados.Model.Dispensado;
 
 public class DispensadoDTO {
 	
@@ -19,7 +19,7 @@ public class DispensadoDTO {
 		
 	}
 	
-	public DispensadoDTO(Despensado dispensado) {
+	public DispensadoDTO(Dispensado dispensado) {
 		this.idDispensado = dispensado.getIdDispensado();
 		this.nome = dispensado.getNome();
 		this.cpf = dispensado.getCpf();
@@ -42,7 +42,7 @@ public class DispensadoDTO {
 		return motivo;
 	}
 	
-	public static List<DispensadoDTO> converterModelParaDTO(List<Despensado> despensado){
+	public static List<DispensadoDTO> converterModelParaDTO(List<Dispensado> despensado){
 		return despensado.stream().map(DispensadoDTO::new).collect(Collectors.toList());
 	}
 

@@ -94,7 +94,7 @@ public class FATTService {
 		Optional<Atirador> atiradorComFatd = this.atiradorRepository.findByRa(fatd.get().getRaAtirador());
 		
 		if(fatd.isPresent()) {
-			if(fatd.get().getJustificativa().isEmpty() || !justificado) {
+			if(fatd.get().getJustificativa() == null || !justificado) {
 				atiradorComFatd.get().setPontos(atiradorComFatd.get().getPontos() + 4);
 			} else if (justificado) {
 				atiradorComFatd.get().setPontos(atiradorComFatd.get().getPontos() + 2);
@@ -102,7 +102,7 @@ public class FATTService {
 			try {
 				this.atiradorRepository.save(atiradorComFatd.get());
 				this.fattRepository.delete(fatd.get());
-				mensagem = "FATT aplicado com sucesso";
+				mensagem = "FATD aplicado com sucesso";
 			} catch(Exception e) {
 				e.printStackTrace();
 				mensagem = "Erro ao aplicar fatt.";

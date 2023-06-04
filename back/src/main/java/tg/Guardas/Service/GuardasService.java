@@ -1,6 +1,9 @@
 package tg.Guardas.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,10 +82,19 @@ public class GuardasService {
 		List<Guardas> guardaDia = this.guardasRepository.findAllByDataGuarda(data.getDataGuarda());
 		List<AtiradoresGuardaDTO> todosOsIntegrantes = new ArrayList<>();
 		NovaGuarda dataTipoGuarda = new NovaGuarda();
+		SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatoSaida = new SimpleDateFormat("dd/MM/yyyy");
 		
 		for(int cont = 0; cont <= guardaDia.size()-1; cont++) {
+			Date dataAntiga = null;
+			try {
+				dataAntiga = formatoEntrada.parse(guardaDia.get(cont).getDataGuarda());
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			dataTipoGuarda.setTipoGuarda(guardaDia.get(cont).getTipoGuarda());
-			dataTipoGuarda.setDataGuarda(guardaDia.get(cont).getDataGuarda());
+			dataTipoGuarda.setDataGuarda(formatoSaida.format(dataAntiga));
 			Optional<Atirador> atirador = this.atiradorRepository.findByNomeGuerra(guardaDia.get(cont).getNomeGuerraIntegrante());
 			AtiradoresGuardaDTO integranteGuarda = new AtiradoresGuardaDTO(atirador.get().getRa(), 
 					atirador.get().getNomeGuerra(), atirador.get().getOcupacao());

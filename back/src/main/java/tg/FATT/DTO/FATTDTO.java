@@ -7,7 +7,7 @@ import tg.FATT.Model.FATT;
 
 public class FATTDTO {
 	
-	private Long idFatt;
+	private Long idFatd;
 	
 	private Long raAtirador;
 
@@ -22,7 +22,7 @@ public class FATTDTO {
 	}
 	
 	public FATTDTO(FATT fatt) {
-		this.idFatt = fatt.getIdFatt();
+		this.idFatd = fatt.getIdFatt();
 		this.raAtirador = fatt.getRaAtirador();
 		this.nomeGuerra = fatt.getNomeGuerra();
 		this.ocorrencia = fatt.getOcorrencia();
@@ -30,8 +30,8 @@ public class FATTDTO {
 	}
 
 	
-	public Long getIdFatt() {
-		return idFatt;
+	public Long getIdFatd() {
+		return idFatd;
 	}
 
 	public Long getRaAtirador() {

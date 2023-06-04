@@ -1,4 +1,4 @@
-package tg.Relatorios.TodosDespensados;
+package tg.Relatorios.TodosDispensados;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -16,33 +16,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import tg.Auxiliares.RelatorioEmPDF.RelatorioEmPDF;
-import tg.Despensados.Model.Despensado;
-import tg.Despensados.Repository.DespensadoRepository;
+import tg.Despensados.Model.Dispensado;
+import tg.Despensados.Repository.DispensadoRepository;
 
 @RestController
-@RequestMapping("/todosDespensados")
+@RequestMapping("/todosDispensados")
 @Service
-public class RelatorioTodosDespensados {
+public class RelatorioTodosDispensados {
 	
 	@Autowired
-	private DespensadoRepository despensadoRepository;
+	private DispensadoRepository dispensadoRepository;
 	
 	@GetMapping
-	public ResponseEntity<byte[]> gerarRelatorioTodosDespensados() {
+	public ResponseEntity<byte[]> gerarRelatorioTodosDispensados() {
 		
 		ClassLoader chamarArquivo = getClass().getClassLoader();
-		File nomeArquivo = new File(chamarArquivo.getResource("Relatorios/TodosDespensados.jrxml").getFile());
+		File nomeArquivo = new File(chamarArquivo.getResource("Relatorios/TodosDispensados.jrxml").getFile());
 		
-		List<Despensado> listaDespensados = this.despensadoRepository.findAllByOrderByNomeAsc();
+		List<Dispensado> listaDispensados = this.dispensadoRepository.findAllByOrderByNomeAsc();
 
 		String BRLformato = "dd/MM/yyyy HH:mm";
 		DateTimeFormatter formatoDataAtual = DateTimeFormatter.ofPattern(BRLformato);
 		
-		JRBeanCollectionDataSource despensados = new JRBeanCollectionDataSource(listaDespensados);
+		JRBeanCollectionDataSource dispensados = new JRBeanCollectionDataSource(listaDispensados);
 		
 		Map<String, Object> parametros = new HashMap<String,Object>();
 		
-		parametros.put("despensados", despensados);
+		parametros.put("dispensados", dispensados);
 		parametros.put("dataAtual", LocalDateTime.now().format(formatoDataAtual));
 		
 		byte[] bytes = RelatorioEmPDF.geraRelatorioEmPDF(nomeArquivo.getAbsolutePath(), parametros);
