@@ -3,6 +3,7 @@
 <div class="container">
     <div class="row"> 
        <div class="col-12"> 
+            <div class="tituloPagina">Pelotões</div>
             <p-table #algumaCoisa [paginator]="true" [rows]="10" [responsive]="true" [columns]="colunasTabela" [value]="pelotoes">
  
                <ng-template pTemplate="caption">
@@ -20,7 +21,7 @@
  
              <ng-template pTemplate="header" let-pelotoesCabecalho>
                  <tr>
-                     <th *ngFor="let cabecalho of pelotoesCabecalho" [ngClass]="cabecalho.style" [pSortableColumn]="cabecalho.field">
+                     <th *ngFor="let cabecalho of pelotoesCabecalho" [ngStyle]="{'text-align': cabecalho.field === 'acao' ?  'center' : ''}"  [ngClass]="cabecalho.style" [pSortableColumn]="cabecalho.field">
                              <p-sortIcon [field]="cabecalho.field" *ngIf="cabecalho.field !== 'acao'"></p-sortIcon>
                              {{ cabecalho.header }}
                      </th>

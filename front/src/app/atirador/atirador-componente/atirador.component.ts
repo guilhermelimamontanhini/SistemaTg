@@ -53,8 +53,8 @@ export class AtiradorComponente implements OnInit {
     this.colunasTabela = [
       { field: 'ra',header: 'RA', style: 'coluna-ra'},
       { field: 'cpf', header: 'CPF', style: 'coluna-cpf'},
-      { field: 'nome', header: 'Nome', style: 'coluna-nome'},
       { field: 'nomeGuerra', header: 'Nome de Guerra', style: 'coluna-guerra'},
+      { field: 'pontos', header: 'Pontos', style: 'coluna-pontos'},
       { field: 'ocupacao', header: 'Ocupação', style: 'coluna-ocupacao'},
       { field: 'acao', header: 'Ação', style: 'coluna-acao'}
     ];
@@ -238,7 +238,6 @@ export class AtiradorComponente implements OnInit {
               {label: lista.nome, value: lista.idAlistado}
             );
           });
-          console.log(this.listaAlistados);
           this.spinnerTabela = false;
       }, (erro) => {
         this.spinnerTabela = false;
@@ -265,7 +264,6 @@ export class AtiradorComponente implements OnInit {
       },
       (erro) => {
         this.spinnerConfirmar = false;
-        console.log(erro);
         if(erro.status === 201) {
           this.toasty.success('Atirador cadastrado com sucesso.');
         } else if(erro.status === 411) {
@@ -292,7 +290,6 @@ export class AtiradorComponente implements OnInit {
     this.raAtirador = atiradorSelecionado.ra;
     this.nomeAtirador = atiradorSelecionado.nomeGuerra;
     this.ocupacao = atiradorSelecionado.ocupacao;
-    console.log(atiradorSelecionado.ocupacao);
   }
 
   /**

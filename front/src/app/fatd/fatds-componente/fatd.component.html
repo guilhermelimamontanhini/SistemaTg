@@ -21,7 +21,7 @@
  
                 <ng-template pTemplate="header" let-fatdsCabecalho>
                     <tr>
-                        <th *ngFor="let fatds of fatdsCabecalho" [ngClass]="fatds.style" [pSortableColumn]="fatds.field">
+                        <th *ngFor="let fatds of fatdsCabecalho" [ngClass]="fatds.style" [ngStyle]="{'text-align': fatds.field === 'acao' ?  'center' : ''}" [pSortableColumn]="fatds.field">
                                 <p-sortIcon [field]="fatds.field" *ngIf="fatds.field !== 'acao'"></p-sortIcon>
                                     {{ fatds.header }}
                         </th>
@@ -140,12 +140,12 @@
         </div>
     </div>
 
-    <div class="col-12 mt-2">
+    <div class="col-12 mt-2" [ngStyle]="{'display': this.justificativaAdicionada.justificativa ? '' : 'none'}">
         <span class="mr-1">Justificado?: </span>
         Sim
-        <p-radioButton name="justificadoSim" value="true" [(ngModel)]="ocorrenciaJustificada"></p-radioButton>
+        <p-radioButton name="justificadoSim" value="1" [(ngModel)]="ocorrenciaJustificada"></p-radioButton>
         Não
-        <p-radioButton name="justificadoNao" value="false" [(ngModel)]="ocorrenciaJustificada"></p-radioButton>
+        <p-radioButton name="justificadoNao" value="2" [(ngModel)]="ocorrenciaJustificada"></p-radioButton>
     </div>
 
     <p-footer>
@@ -156,7 +156,7 @@
         </button>
         
         <button class="btn btn-success m-0"
-            [disabled]="desabilitarBotoes"
+            [disabled]="desabilitarBotoes || !ocorrenciaJustificada"
             (click)="aplicarFATD()">
             <i class="fas fa-fw" [ngClass]="desabilitarBotoes ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
             Confirmar

@@ -21,7 +21,7 @@
  
              <ng-template pTemplate="header" let-dispensadoCabecalho>
                  <tr>
-                     <th *ngFor="let dispensado of dispensadoCabecalho" [ngClass]="dispensado.style" [pSortableColumn]="dispensado.field">
+                     <th *ngFor="let dispensado of dispensadoCabecalho" [ngStyle]="{'text-align': dispensado.field === 'acao' ?  'center' : ''}" [ngClass]="dispensado.style" [pSortableColumn]="dispensado.field">
                              <p-sortIcon [field]="dispensado.field" *ngIf="dispensado.field !== 'acao'"></p-sortIcon>
                              {{ dispensado.header }}
                      </th>
@@ -104,7 +104,7 @@
     [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
     
     <p-header>
-        <b>Deseja excluir Dispensado</b>
+        <b>Deseja excluir dispensado</b>
     </p-header>
    
     <div class="row">

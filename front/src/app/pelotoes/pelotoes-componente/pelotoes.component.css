@@ -29,6 +29,11 @@
     
 }
 
+.tituloPagina {
+    text-align: center;
+    font-size: 30px;
+}
+
 .coluna-numero {
     width: 10%;
 }

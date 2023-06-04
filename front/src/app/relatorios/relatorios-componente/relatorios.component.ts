@@ -14,7 +14,7 @@ export class RelatoriosComponente implements OnInit {
   public spinnerConfirmarTodosAtiradores: boolean;
   public spinnerConfirmarPontos: boolean;
   public spinnerConfirmarAlistados: boolean;
-  public spinnerConfirmarDespensados: boolean;
+  public spinnerConfirmarDispensados: boolean;
   public spinnerConfirmarDesligados: boolean;
   public spinnerConfirmarRefratarios: boolean;
   public spinnerConfirmarAtiraram: boolean;
@@ -110,21 +110,21 @@ export class RelatoriosComponente implements OnInit {
 
   }
 
-  public gerarRelatorioDespensados(): void {
+  public gerarRelatorioDispensados(): void {
 
     this.desabilitarBotoes = true;
-    this.spinnerConfirmarDespensados = true;
+    this.spinnerConfirmarDispensados = true;
 
-    this.relatoriosService.gerarRelatorioDespensados().subscribe(
+    this.relatoriosService.gerarRelatorioDispensados().subscribe(
       (relatorio) => {
-        this.downloadService.baixaRelatorio(relatorio, 'relatorio-despensados.pdf');
+        this.downloadService.baixaRelatorio(relatorio, 'relatorio-dispensados.pdf');
         this.desabilitarBotoes = false;
-        this.spinnerConfirmarDespensados = false;
+        this.spinnerConfirmarDispensados = false;
         this.toastyService.wait("Relatório sendo baixado");
       },
       erro => {
         this.toastyService.error("Não foi possível gerar");
-        this.spinnerConfirmarDespensados = false;
+        this.spinnerConfirmarDispensados = false;
         this.desabilitarBotoes = false;
       }
     )

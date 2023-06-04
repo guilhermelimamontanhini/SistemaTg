@@ -4,7 +4,7 @@
     <div class="row"> 
        <div class="col-12"> 
           <div class="tituloPagina">Atiradores</div>
-            <p-table #tabelaAtiradores [paginator]="true" [rows]="8" [responsive]="true" [columns]="colunasTabela" [value]="atiradores" [globalFilterFields]="['nome', 'nomeGuerra']">
+            <p-table #tabelaAtiradores [paginator]="true" [rows]="4" [responsive]="true" [columns]="colunasTabela" [value]="atiradores" [globalFilterFields]="['nome', 'nomeGuerra']">
     
             <ng-template pTemplate="caption">
                 <div class="container p-0">
@@ -28,7 +28,7 @@
  
              <ng-template pTemplate="header" let-atiradorCabecalho>
                  <tr>
-                     <th *ngFor="let atirador of atiradorCabecalho" [ngClass]="atirador.style" [pSortableColumn]="atirador.field">
+                     <th *ngFor="let atirador of atiradorCabecalho" [ngStyle]="{'text-align': atirador.field === 'acao' ?  'center' : ''}" [ngClass]="atirador.style" [pSortableColumn]="atirador.field">
                              <p-sortIcon [field]="atirador.field" *ngIf="atirador.field !== 'acao'"></p-sortIcon>
                              {{ atirador.header }}
                      </th>
@@ -49,18 +49,20 @@
                         </span>
                         {{ atiradorCorpo.cpf }}
                    </td>
-                   <td>
-                        <span class="ui-column-title">
-                            Nome
-                        </span>
-                        {{ atiradorCorpo.nome }}
-                    </td>
                     <td class="texto-cabecalho">
                         <span class="ui-column-title">
                             Nome de Guerra
                         </span>
                         {{ atiradorCorpo.nomeGuerra }}
                    </td>
+                   <td class="texto-cabecalho">
+                        <span class="ui-column-title">
+                            Pontos
+                        </span>
+                        <span [ngStyle]="{
+                            'color': atiradorCorpo.pontos <= 50 ? 'green' : atiradorCorpo.pontos > 50 && atiradorCorpo.pontos <= 100 ? 'yellow' : atiradorCorpo.pontos < 100 && atiradorCorpo.pontos <= 125 ? 'orange' : 'red'
+                          }">{{ atiradorCorpo.pontos }}</span>
+                    </td>
                    <td class="texto-cabecalho">
                         <span class="ui-column-title">
                             Ocupação

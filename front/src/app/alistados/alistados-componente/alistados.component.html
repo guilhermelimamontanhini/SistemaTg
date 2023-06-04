@@ -29,7 +29,7 @@
  
              <ng-template pTemplate="header" let-alistadoCabecalho>
                  <tr>
-                     <th *ngFor="let cabecalho of alistadoCabecalho" [ngClass]="cabecalho.style" [pSortableColumn]="cabecalho.field">
+                     <th *ngFor="let cabecalho of alistadoCabecalho" [ngStyle]="{'text-align': cabecalho.field === 'acao' ?  'center' : ''}" [ngClass]="cabecalho.style" [pSortableColumn]="cabecalho.field">
                              <p-sortIcon [field]="cabecalho.field" *ngIf="cabecalho.field !== 'acao'"></p-sortIcon>
                              {{ cabecalho.header }}
                      </th>

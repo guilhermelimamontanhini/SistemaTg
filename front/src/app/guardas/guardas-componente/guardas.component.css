@@ -29,6 +29,10 @@
     
 }
 
+.tituloPagina {
+    text-align: center;
+    font-size: 30px;
+}
 
 .coluna-data {
     width: 10%;

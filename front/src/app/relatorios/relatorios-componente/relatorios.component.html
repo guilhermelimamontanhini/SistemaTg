@@ -13,7 +13,7 @@
                 [disabled]="desabilitarBotoes"
                 (click)="gerarRelatorioTodosAtiradores()">
                 <i class="fas fa-fw" [ngClass]="spinnerConfirmarTodosAtiradores ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
-                Todos Atiradores
+                Todos os atiradores
             </button>
         </div>
         <div class="col-lg-3" style="text-align: center;">
@@ -22,7 +22,7 @@
                 [disabled]="desabilitarBotoes"
                 (click)="gerarRelatorioPontosAtirador()">
                 <i class="fas fa-fw" [ngClass]="spinnerConfirmarPontos ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
-                Pontos dos Atiradores
+                Pontos dos atiradores
             </button>
         </div>
         <div class="col-lg-3" style="text-align: center;">
@@ -32,17 +32,17 @@
                 (click)="gerarRelatorioAlistadosRefratarios(1)"
                 >
                 <i class="fas fa-fw" [ngClass]="spinnerConfirmarAlistados ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
-                Alistados
+                Todos os alistados
             </button>
         </div>
         <div class="col-lg-3" style="text-align: center;">
             <button class="btn btn-primary"
                 style="width: 100%;"
                 [disabled]="desabilitarBotoes"
-                (click)="gerarRelatorioDespensados()"
+                (click)="gerarRelatorioDispensados()"
                 >
-                <i class="fas fa-fw" [ngClass]="spinnerConfirmarDespensados ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
-                Despensados
+                <i class="fas fa-fw" [ngClass]="spinnerConfirmarDispensados ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
+                Todos os dispensados
             </button>
         </div>
         
@@ -55,7 +55,7 @@
                 (click)="gerarRelatorioDesligados()"
                 >
                 <i class="fas fa-fw" [ngClass]="spinnerConfirmarDesligados ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
-               Desligados
+               Todos os desligados
             </button>
         </div>
         <div class="col-lg-3" style="text-align: center;">
@@ -65,7 +65,7 @@
                 (click)="gerarRelatorioAlistadosRefratarios(0)"
                 >
                 <i class="fas fa-fw" [ngClass]="spinnerConfirmarRefratarios ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
-                Refratarios
+                Todos os refratarios
             </button>
         </div>
         <div class="col-lg-3" style="text-align: center;">
@@ -75,7 +75,7 @@
                 (click)="gerarRelatorioAtiraram()"
                 >
                 <i class="fas fa-fw" [ngClass]="spinnerConfirmarAtiraram ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
-                Atiradores que Atiraram
+                Atiradores que atiraram
             </button>
         </div>
         <div class="col-lg-3" style="text-align: center;">
@@ -85,7 +85,7 @@
                 (click)="gerarRelatorioAlunos()"
                 >
                 <i class="fas fa-fw" [ngClass]="spinnerConfirmarAlunos ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
-                Alunos do Curso
+                Alunos do curso
             </button>
         </div>
     </div>
@@ -97,7 +97,7 @@
                 (click)="gerarRelatorioMonitores()"
                 >
                 <i class="fas fa-fw" [ngClass]="spinnerConfirmarMonitores ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
-                Monitores
+                Todos os monitores
             </button>
         </div>
         <div class="col-lg-3" style="text-align: center;">
@@ -146,7 +146,7 @@
         </button>
         
         <button class="btn btn-success m-0"
-            [disabled]="spinnerConfirmarGuarda"
+            [disabled]="spinnerConfirmarGuarda || !dataEscrita"
             (click)="gerarRelatorioGuarda()">
             <i class="fas fa-fw" [ngClass]="spinnerConfirmarGuarda ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
             Confirmar
@@ -178,7 +178,7 @@
         </button>
         
         <button class="btn btn-success m-0"
-            [disabled]="spinnerConfirmarMembros"
+            [disabled]="spinnerConfirmarMembros || !numeroPelotao"
             (click)="gerarRelatorioMembrosPelotao()">
             <i class="fas fa-fw" [ngClass]="spinnerConfirmarMembros ? 'fa-spin fa-circle-notch' : 'fa-check'"></i>
             Confirmar

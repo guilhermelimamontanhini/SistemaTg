@@ -42,12 +42,12 @@
    width: 13%;
 }
 
-.coluna-nome {
-    width: auto;
+.coluna-pontos {
+    width: 10%;
 }
 
 .coluna-guerra {
-   width: 15%;
+   width: auto;
 }
 
 .coluna-ocupacao {

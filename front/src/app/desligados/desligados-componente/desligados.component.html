@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row"> 
        <div class="col-12"> 
-           <div class="tituloPagina">Dispensados</div>
+           <div class="tituloPagina">Desligados</div>
                 <p-table #tabelaDispensado [paginator]="true" [rows]="10" [responsive]="true" [columns]="colunasTabela" [value]="desligados" [globalFilterFields]="['nome']">
  
                     <ng-template pTemplate="caption">
@@ -21,7 +21,7 @@
  
                     <ng-template pTemplate="header" let-desligadosCabecalho>
                         <tr>
-                            <th *ngFor="let desligados of desligadosCabecalho" [ngClass]="desligados.style" [pSortableColumn]="desligados.field">
+                            <th *ngFor="let desligados of desligadosCabecalho" [ngStyle]="{'text-align': desligados.field === 'acao' ?  'center' : ''}"  [ngClass]="desligados.style" [pSortableColumn]="desligados.field">
                                     <p-sortIcon [field]="desligados.field" *ngIf="desligados.field !== 'acao'"></p-sortIcon>
                                     {{ desligados.header }}
                             </th>
@@ -103,7 +103,7 @@
  [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '25vw'}">
  
  <p-header>
-     <b>Deseja excluir Desligado</b>
+     <b>Deseja excluir desligado</b>
  </p-header>
 
  <div class="row">

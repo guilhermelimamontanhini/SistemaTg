@@ -23,8 +23,8 @@ export class RelatoriosService {
     return this.http.get<any>(this.conexao.getServidor() + `/todosAlistados/` + tipo, { responseType: 'blob' as 'json' });
   }
 
-  public gerarRelatorioDespensados(): Observable<any> {
-    return this.http.get<any>(this.conexao.getServidor() + `/todosDespensados`, { responseType: 'blob' as 'json' });
+  public gerarRelatorioDispensados(): Observable<any> {
+    return this.http.get<any>(this.conexao.getServidor() + `/todosDispensados`, { responseType: 'blob' as 'json' });
   }
 
   public gerarRelatorioDesligados(): Observable<any> {

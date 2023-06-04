@@ -31,6 +31,7 @@ export class GuardasComponente implements OnInit {
 
   public raAtirador: number;
   public dataEscrita: string;
+  public dataEscritaDialog: string;
   public tipoGuarda: string;
 
   constructor(
@@ -114,16 +115,6 @@ export class GuardasComponente implements OnInit {
 
   /**
    * 
-   * @description Método para abrir cadastrado da guarda
-   * @return {void}
-   */
-  public abrirDialogDeCadastrarGuarda(): void {
-    this.dialogCadastrarGuarda = true;
-    this.listarTodosOsAtiradores();
-  }
-
-  /**
-   * 
    * @description Método para listar os atiradores
    * @return {void}
    */
@@ -132,7 +123,6 @@ export class GuardasComponente implements OnInit {
     this.spinnerTabela = true;
     this.atiradorService.listarTodosAlistados().subscribe(
       (atiradoresRetornados: Atirador[]) => {
-        console.log(this.atiradores);
         atiradoresRetornados.forEach(lista => {
           this.listaAtiradores.push({
             value: lista.ra,
@@ -152,6 +142,16 @@ export class GuardasComponente implements OnInit {
     )
   }
 
+   /**
+   * 
+   * @description Método para abrir cadastrado da guarda
+   * @return {void}
+   */
+   public abrirDialogDeCadastrarGuarda(): void {
+    this.dialogCadastrarGuarda = true;
+    this.listarTodosOsAtiradores();
+  }
+
   /**
    * 
    * @description Método para fechar cadastrado da guarda
@@ -161,7 +161,8 @@ export class GuardasComponente implements OnInit {
     this.atiradores = [];
     this.dialogCadastrarGuarda = false;
     this.tipoGuarda = '';
-    this.dataEscrita = '';
+    this.dataEscritaDialog = '';
+    this.raAtirador = 0;
   }
 
   /**
@@ -172,7 +173,7 @@ export class GuardasComponente implements OnInit {
   public cadastrarGuarda(): void {
 
     this.spinnerConfirmar = true;
-    this.novaGuarda.dataGuarda = this.dataEscrita;
+    this.novaGuarda.dataGuarda = this.dataEscritaDialog;
     this.novaGuarda.tipoGuarda = this.tipoGuarda;
 
     this.guardaService.cadastrarIntegrante(this.raAtirador, this.novaGuarda).subscribe(

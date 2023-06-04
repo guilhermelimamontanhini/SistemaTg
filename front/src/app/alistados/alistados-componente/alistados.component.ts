@@ -163,8 +163,7 @@ export class AlistadosComponente implements OnInit {
         this.spinnerConfirmar = false;
         if (erro.status == 200) {
           this.toasty.success('Alistado dispensado com sucesso');
-        }
-        if(erro.status == 400) {
+        } else if(erro.status == 400) {
           this.toasty.warning("Erro ao dispensar alistado.");
         } else if (erro.status == 404) {
           this.toasty.warning("Alistado não existe");

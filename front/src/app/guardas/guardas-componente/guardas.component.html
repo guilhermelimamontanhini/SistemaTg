@@ -3,6 +3,7 @@
 <div class="container">
     <div class="row"> 
        <div class="col-12"> 
+            <div class="tituloPagina">Guardas</div>
             <p-table #algumaCoisa [paginator]="true" [rows]="10" [responsive]="true" [columns]="colunasTabela" [value]="guardaDoDia">
  
                <ng-template pTemplate="caption">
@@ -20,7 +21,7 @@
                                class="form-control bloco m-0 largura-input-cabecalho btn-pesquisa mr-1 pr-0 " 
                                style="display: inline !important;" type="date" placeholder="Data..">
 
-                            <button class="btn btn-primary" style="margin-bottom: 6px;" [disabled]="spinnerTabela || desabilitarBotoes" pTooltip="Listar Guarda" (click)="listarGuardaDoDia(dataEscrita)">
+                            <button class="btn btn-primary" style="margin-bottom: 6px;" [disabled]="spinnerTabela || desabilitarBotoes || !dataEscrita" pTooltip="Listar Guarda" (click)="listarGuardaDoDia(dataEscrita)">
                                 <i class="fas fa-fw" [ngClass]="spinnerTabela ? 'fa-spin fa-circle-notch' : 'fa-search'"></i>
                             </button>
                             <button class="btn btn-warning text-white ml-2"  style="margin-bottom: 6px;" [disabled]="spinnerTabela || desabilitarBotoes" (click)="limparFiltro()" pTooltip="Limpar filtros">
@@ -33,7 +34,7 @@
  
              <ng-template pTemplate="header" let-guardaCabecalho>
                  <tr>
-                     <th *ngFor="let cabelho of guardaCabecalho" [ngClass]="cabelho.style" [pSortableColumn]="cabelho.field">
+                     <th *ngFor="let cabelho of guardaCabecalho" [ngStyle]="{'text-align': cabelho.field === 'acao' ?  'center' : ''}"  [ngClass]="cabelho.style" [pSortableColumn]="cabelho.field">
                              <p-sortIcon [field]="cabelho.field" *ngIf="cabelho.field !== 'acao'"></p-sortIcon>
                              {{ cabelho.header }}
                      </th>
@@ -85,7 +86,7 @@
     [resizable]="false" [blockScroll]="true" [closeOnEscape]="true" [style]="{'width': '70vw'}">
     
     <p-header>
-        Atiradores do pelotao <b>{{dataEscrita}}</b>
+        Atiradores da guarda do dia <b>{{dataEscrita}}</b>
     </p-header>
    
     <div class="container">
@@ -172,16 +173,21 @@
             <p-dropdown [options]="listaAtiradores" [(ngModel)]="raAtirador" placeholder="Atiradores"></p-dropdown>
         </div>
         <div class="col-12 mt-2">
-            <input [(ngModel)]="dataEscrita"
+            <input [(ngModel)]="dataEscritaDialog"
                 class="form-control bloco m-0 largura-input-cabecalho btn-pesquisa mr-1 pr-0 " 
                 style="display: inline !important;" type="date" placeholder="Data..">
         </div>
-        <div class="col-12 mt-2">
-            <span class="mr-1">Tipo da Guarda: </span>
-            Preta
-            <p-radioButton name="guardaDiaSemana" value="D" [(ngModel)]="tipoGuarda"></p-radioButton>
-            Vermelha
-            <p-radioButton name="guardaFimSemana" value="F" [(ngModel)]="tipoGuarda"></p-radioButton>
+        <div class="col-12 mt-2" style="display: grid">
+            <span class="col-12 mr-1">Tipo da Guarda: </span>
+            <span class="col-12 mr-1">
+                Dia de semana
+                <p-radioButton name="guardaDiaSemana" value="D" [(ngModel)]="tipoGuarda"></p-radioButton>
+            </span>
+            
+            <span class="col-12 mr-1">
+                Fim de semana
+                <p-radioButton name="guardaFimSemana" value="F" [(ngModel)]="tipoGuarda"></p-radioButton>
+            </span>
         </div>
     </div>
     

@@ -17,7 +17,7 @@ export class FatdComponente implements OnInit {
 
   public idFatd: number;
   public nomeDeGuerra: string;
-  public ocorrenciaJustificada: boolean;
+  public ocorrenciaJustificada: number;
 
   public spinnerTabela: boolean;
   public desabilitarBotoes: boolean;
@@ -124,6 +124,9 @@ export class FatdComponente implements OnInit {
     this.idFatd = fatd.idFatd;
     this.nomeDeGuerra = fatd.nomeGuerra;
     this.justificativaAdicionada.justificativa = fatd.justificativa;
+    if (this.justificativaAdicionada.justificativa == null) {
+      this.ocorrenciaJustificada = 2;
+    }
     this.dialogAplicar = true;
   }
 
@@ -135,6 +138,7 @@ export class FatdComponente implements OnInit {
   public fecharDialogDeAplicarFATD(): void {
     this.idFatd = 0;
     this.nomeDeGuerra = '';
+    this.ocorrenciaJustificada = 0;
     this.dialogAplicar = false;
   }
 
@@ -146,11 +150,12 @@ export class FatdComponente implements OnInit {
   public aplicarFATD(): void {
     this.desabilitarBotoes = true;
     this.toasty.clearAll();
-    this.fatdService.aplicarFATD(this.idFatd, this.ocorrenciaJustificada).subscribe(
+    this.fatdService.aplicarFATD(this.idFatd, this.ocorrenciaJustificada == 1 ? true : false).subscribe(
       () => {
         this.desabilitarBotoes = false;
       }, 
       (erro) => {
+        this.listarTodosOsFatds();
         this.desabilitarBotoes = false;
         if(erro.status == 200) {
           this.toasty.success("FATD aplicado com sucesso.");
@@ -160,7 +165,6 @@ export class FatdComponente implements OnInit {
           this.toasty.error("FATDs não encontrado.");
         }
         this.fecharDialogDeAplicarFATD();
-        this.listarTodosOsFatds();
       }
     )
 
